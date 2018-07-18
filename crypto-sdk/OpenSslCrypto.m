@@ -89,7 +89,7 @@
         return nil;
     }
     
-    const char* pwd = [password cStringUsingEncoding: NSASCIIStringEncoding];
+    const char* pwd = [password cStringUsingEncoding: NSUTF8StringEncoding];
     
     PKCS8_PRIV_KEY_INFO* info;
     info = EVP_PKEY2PKCS8(pkey);
@@ -624,7 +624,7 @@ int pass_cb(char *buf, int size, int rwflag, void *u);
 
 int pass_cb(char *buf, int size, int rwflag, void *u) {
     NSString* passwordString = [[NSThread currentThread] threadDictionary][passwordKey];
-    const char* password = [passwordString cStringUsingEncoding: NSASCIIStringEncoding];
+    const char* password = [passwordString cStringUsingEncoding: NSUTF8StringEncoding];
     
     int length = (int)strlen(password);
     memcpy(buf, password, length);
