@@ -31,6 +31,16 @@ class CryptoTests: XCTestCase {
         XCTAssert(userKeyPair.privateKeyContainer.privateKey.starts(with: "-----BEGIN ENCRYPTED PRIVATE KEY-----"))
     }
     
+    func testGenerateUserKeyPair_withSpecialCharacterPassword_returnsKeyPairContainers() {
+        let password = "~ABC123§DEF%F456!"
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password)
+        
+        XCTAssertNotNil(userKeyPair.publicKeyContainer)
+        XCTAssertNotNil(userKeyPair.privateKeyContainer)
+        XCTAssert(userKeyPair.publicKeyContainer.publicKey.starts(with: "-----BEGIN PUBLIC KEY-----"))
+        XCTAssert(userKeyPair.privateKeyContainer.privateKey.starts(with: "-----BEGIN ENCRYPTED PRIVATE KEY-----"))
+    }
+    
     func testGenerateUserKeyPair_withoutVersion_usesDefaultVersion() {
         let password = "ABC123DEFF456"
         let userKeyPair = try! crypto!.generateUserKeyPair(password: password)
