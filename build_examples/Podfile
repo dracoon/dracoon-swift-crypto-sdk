@@ -1,0 +1,10 @@
+project 'CryptoSDKCocoaPodsExample.xcodeproj'
+
+platform :ios, '9.3'
+
+target 'CryptoSDKCocoaPodsExample' do
+  use_frameworks!
+
+  pod 'DRACOON-Crypto-SDK', :path => '..'
+
+end
