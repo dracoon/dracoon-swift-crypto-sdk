@@ -4,8 +4,9 @@ A library which implements the client-side encryption of DRACOON.
 
 # Introduction
 
-Later, a link to the DRACOON client-side encryption white paper will be added here. This document
-will describe the client-side encryption in detail.
+A detailed description of client-side encryption of DRACOON can be found here:
+
+https://support.dracoon.com/hc/en-us/articles/360000986345
 
 # Setup
 
@@ -21,13 +22,39 @@ Xcode 7.3.1 or newer
 
 Add the SDK to your Cartfile:
 
-`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 1.0`
+`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 1.0.2`
 
 Then run
 
 `carthage update --platform iOS`
 
 To add the framework to your project, open it in Xcode, choose the "General" tab in targets settings and add it to "Linked Frameworks and Libraries".
+
+#### CocoaPods
+
+Add to your Podfile:
+```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.3'
+use_frameworks!
+
+target '<Your Target Name>' do
+pod 'DRACOON-Crypto-SDK', '~> v1.0.2'
+end
+```
+Then run
+
+`pod install`
+
+#### Build examples
+
+There is an example app in `build_examples`.
+
+Run `sh setupCarthage.sh` and `sh setupCocoaPods.sh`.
+The run `sh regenerateProjects` to generate both the example projects.
+
+To run the Carthage project open `CryptoSDKCarthageExample.xcodeproj`
+To run the CocoaPods project open `CryptoSDKCocoaPodsExample.xcworkspace`
 
 # Example
 
