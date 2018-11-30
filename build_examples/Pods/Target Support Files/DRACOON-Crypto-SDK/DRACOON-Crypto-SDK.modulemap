@@ -1,0 +1,6 @@
+framework module crypto_sdk {
+  umbrella header "DRACOON-Crypto-SDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
