@@ -171,82 +171,25 @@ fail_userKey_rsa:
     return rsaKey != nil;
 }
 
-//- (nullable RSA*)decryptPrivateKey:(NSString*)privateKey withPassword:(NSString*) password {
-//
-//    if (privateKey.length <= 0 ||
-//        password.length <= 0) {
-//        return nil;
-//    }
-//
-//    const char *encryptedPrivateKey = privateKey.UTF8String;
-//    BIO *bio = BIO_new_mem_buf(encryptedPrivateKey, (int)strlen(encryptedPrivateKey));
-//
-//    [[NSThread currentThread] threadDictionary][passwordKey] = password;
-//    RSA *rsaKey = PEM_read_bio_RSAPrivateKey(bio, NULL, pass_cb, NULL);
-//    [[NSThread currentThread] threadDictionary][passwordKey] = NULL;
-//
-//    BIO_set_close(bio, BIO_CLOSE);
-//    BIO_free_all(bio);
-//
-//    return rsaKey;
-//}
-    
-    - (nullable RSA*)decryptPrivateKey:(NSString*)privateKey withPassword:(NSString*) password {
-        
-        if (privateKey.length <= 0 ||
-            password.length <= 0) {
-            return nil;
-        }
-        
-        const char *encryptedPrivateKey = privateKey.UTF8String;
-        BIO *bio = BIO_new_mem_buf(encryptedPrivateKey, (int)strlen(encryptedPrivateKey));
-        
-        X509_SIG *pkcs8 = PEM_read_bio_PKCS8(bio, NULL, NULL, NULL);
-        if (pkcs8 == NULL) {
-            BIO_set_close(bio, BIO_CLOSE);
-            BIO_free_all(bio);
-            return NULL;
-        }
-        const char *pass = password.UTF8String;
-        PKCS8_PRIV_KEY_INFO *p8 = PKCS8_decrypt(pkcs8, pass, (int)strlen(pass));
-        
-        //EVP_PKEY *testKey = EVP_parse_private_key(<#CBS *cbs#>)
-        if (p8 == NULL) {
-            char *errorString = ossl_err_as_string();
-            NSString *string = [[NSString alloc] initWithUTF8String:errorString];
-            NSLog(@"%@", string);
-            OPENSSL_free(pkcs8);
-            BIO_set_close(bio, BIO_CLOSE);
-            BIO_free_all(bio);
-            return NULL;
-        }
-        EVP_PKEY *key = EVP_PKCS82PKEY(p8);
-        if (key == NULL) {
-            OPENSSL_free(p8);
-            OPENSSL_free(pkcs8);
-            BIO_set_close(bio, BIO_CLOSE);
-            BIO_free_all(bio);
-            return NULL;
-        }
-        RSA * rsa = EVP_PKEY_get1_RSA(key);
-        
-        BIO_set_close(bio, BIO_CLOSE);
-        BIO_free_all(bio);
-        
-        return rsa;
+- (nullable RSA*)decryptPrivateKey:(NSString*)privateKey withPassword:(NSString*) password {
+
+    if (privateKey.length <= 0 ||
+        password.length <= 0) {
+        return nil;
     }
-    
-    char *ossl_err_as_string (void)
-    { BIO *bio = BIO_new (BIO_s_mem ());
-        ERR_print_errors (bio);
-        char *buf = NULL;
-        size_t len = BIO_get_mem_data (bio, &buf);
-        char *ret = (char *) calloc (1, 1 + len);
-        if (ret)
-        memcpy (ret, buf, len);
-        BIO_free (bio);
-        return ret;
-    }
+
+    const char *encryptedPrivateKey = privateKey.UTF8String;
+    BIO *bio = BIO_new_mem_buf(encryptedPrivateKey, (int)strlen(encryptedPrivateKey));
+
+    [[NSThread currentThread] threadDictionary][passwordKey] = password;
+    RSA *rsaKey = PEM_read_bio_RSAPrivateKey(bio, NULL, pass_cb, NULL);
+    [[NSThread currentThread] threadDictionary][passwordKey] = NULL;
+
+    BIO_set_close(bio, BIO_CLOSE);
+    BIO_free_all(bio);
+
+    return rsaKey;
+}
 
 #pragma mark -
 #pragma mark Create FileKey
