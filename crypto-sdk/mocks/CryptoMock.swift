@@ -9,15 +9,15 @@ import Foundation
 
 public class CryptoMock {
     
-    static func getPlainFileKey() -> PlainFileKey {
+    public static func getPlainFileKey() -> PlainFileKey {
         return PlainFileKey(key: "plainFileKey", version: "test")
     }
     
-    static func getEncryptionCipher() -> FileEncryptionCipher {
+    public static func getEncryptionCipher() -> FileEncryptionCipher {
         return FileEncryptionCipher(crypto: CryptoMock.getCryptoFramework(), cipher: NSValue(), fileKey: CryptoMock.getPlainFileKey())
     }
     
-    static func getDecyptionCipher() -> FileDecryptionCipher {
+    public static func getDecyptionCipher() -> FileDecryptionCipher {
         return FileDecryptionCipher(crypto: CryptoMock.getCryptoFramework(), cipher: NSValue(), fileKey: CryptoMock.getPlainFileKey())
     }
     
