@@ -7,10 +7,10 @@
 
 import Foundation
 
-class CryptoMock {
+public class CryptoMock {
     
     static func getPlainFileKey() -> PlainFileKey {
-        return PlainFileKey(key: "plainFileKey", version: "Test")
+        return PlainFileKey(key: "plainFileKey", version: "test")
     }
     
     static func getEncryptionCipher() -> FileEncryptionCipher {
@@ -21,7 +21,7 @@ class CryptoMock {
         return FileDecryptionCipher(crypto: CryptoMock.getCryptoFramework(), cipher: NSValue(), fileKey: CryptoMock.getPlainFileKey())
     }
     
-    static func getCryptoFramework() -> CryptoFramework {
+    private static func getCryptoFramework() -> CryptoFramework {
         return OpenSslMock()
     }
 }
