@@ -5,8 +5,6 @@
 //  Copyright © 2019 Dracoon. All rights reserved.
 //
 
-import Foundation
-
 public class CryptoMock {
     
     public static func getPlainFileKey() -> PlainFileKey {
