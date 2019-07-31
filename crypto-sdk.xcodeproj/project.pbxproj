@@ -22,6 +22,8 @@
 		E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9E11022EAE50C000C63DD /* CryptoMock.swift */; };
 		E0A9E11322EAE7FB000C63DD /* OpenSslMock.h in Headers */ = {isa = PBXBuildFile; fileRef = E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0A9E11522EAE81F000C63DD /* OpenSslMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A9E11422EAE81F000C63DD /* OpenSslMock.m */; };
+		E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */; };
+		E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */; };
 		E0D04187203B04D500658D53 /* crypto_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D04185203B04D500658D53 /* crypto_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0D04192203B087000658D53 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D04191203B087000658D53 /* Crypto.swift */; };
 		E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D04193203B09A800658D53 /* OpenSslCrypto.m */; };
@@ -63,6 +65,8 @@
 		E0A9E11022EAE50C000C63DD /* CryptoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMock.swift; sourceTree = "<group>"; };
 		E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSslMock.h; sourceTree = "<group>"; };
 		E0A9E11422EAE81F000C63DD /* OpenSslMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslMock.m; sourceTree = "<group>"; };
+		E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionMock.swift; sourceTree = "<group>"; };
+		E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionMock.swift; sourceTree = "<group>"; };
 		E0D04182203B04D500658D53 /* crypto_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = crypto_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D04185203B04D500658D53 /* crypto_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypto_sdk.h; sourceTree = "<group>"; };
 		E0D04191203B087000658D53 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				E0A9E11022EAE50C000C63DD /* CryptoMock.swift */,
 				E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */,
 				E0A9E11422EAE81F000C63DD /* OpenSslMock.m */,
+				E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */,
+				E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */,
 			);
 			path = mocks;
 			sourceTree = "<group>";
@@ -318,10 +324,12 @@
 				E0A9E11522EAE81F000C63DD /* OpenSslMock.m in Sources */,
 				E036566720650D920026F210 /* CryptoProtocol.swift in Sources */,
 				E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */,
+				E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */,
 				E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */,
 				E060D439203EC81B00167656 /* CryptoError.swift in Sources */,
 				E0D041A1203B2F9A00658D53 /* CryptoConstants.swift in Sources */,
 				E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */,
+				E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */,
 				E018DF452045650A005B810D /* PlainFileKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

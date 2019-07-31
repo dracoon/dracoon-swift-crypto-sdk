@@ -11,15 +11,15 @@ public class CryptoMock {
         return PlainFileKey(key: "plainFileKey", version: "test")
     }
     
-    public static func getEncryptionCipher() -> FileEncryptionCipher {
-        return FileEncryptionCipher(crypto: CryptoMock.getCryptoFramework(), cipher: NSValue(), fileKey: CryptoMock.getPlainFileKey())
+    public static func getEncryptionCipher() -> EncryptionCipher {
+        return FileEncryptionMock()
     }
     
-    public static func getDecyptionCipher() -> FileDecryptionCipher {
-        return FileDecryptionCipher(crypto: CryptoMock.getCryptoFramework(), cipher: NSValue(), fileKey: CryptoMock.getPlainFileKey())
+    public static func getDecyptionCipher() -> DecryptionCipher {
+        return FileDecryptionMock()
     }
     
-    private static func getCryptoFramework() -> CryptoFramework {
+    public static func getCryptoFramework() -> CryptoFramework {
         return OpenSslMock()
     }
 }
