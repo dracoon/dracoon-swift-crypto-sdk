@@ -6,6 +6,7 @@
 //
 
 public protocol EncryptionCipher {
+    var fileKey: PlainFileKey { get }
     func processBlock(fileData: Data) throws -> Data
     func doFinal() throws
 }

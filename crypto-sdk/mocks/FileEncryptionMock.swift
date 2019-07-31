@@ -10,6 +10,7 @@ import Foundation
 
 public class FileEncryptionMock: EncryptionCipher {
     
+    public var fileKey = CryptoMock.getPlainFileKey()
     public var error: Error?
     public var data = Data()
     
