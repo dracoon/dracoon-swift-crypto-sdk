@@ -5,7 +5,12 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public class FileDecryptionCipher {
+public protocol DecryptionCipher {
+    func processBlock(fileData: Data) throws -> Data
+    func doFinal() throws
+}
+
+public class FileDecryptionCipher: DecryptionCipher {
     
     private let crypto: CryptoFramework
     private let cipher: Cipher
