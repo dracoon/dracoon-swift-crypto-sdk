@@ -38,6 +38,8 @@
 		E0EF4296204442D2002B17C4 /* FileDecryptionCipherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EF42832044279F002B17C4 /* FileDecryptionCipherTests.swift */; };
 		E0F65BD32313D13B00AAAFDB /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD22313D13B00AAAFDB /* EncryptionCipher.swift */; };
 		E0F65BD52313D15D00AAAFDB /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD42313D15D00AAAFDB /* DecryptionCipher.swift */; };
+		E0F65BD62313D88300AAAFDB /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD22313D13B00AAAFDB /* EncryptionCipher.swift */; };
+		E0F65BD72313D88600AAAFDB /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD42313D15D00AAAFDB /* DecryptionCipher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -346,8 +348,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0F65BD62313D88300AAAFDB /* EncryptionCipher.swift in Sources */,
 				E0EF4294204442CA002B17C4 /* CryptoTests.swift in Sources */,
 				E0EF4296204442D2002B17C4 /* FileDecryptionCipherTests.swift in Sources */,
+				E0F65BD72313D88600AAAFDB /* DecryptionCipher.swift in Sources */,
 				E0EF4295204442D0002B17C4 /* FileEncryptionCipherTests.swift in Sources */,
 				E018DF4B20459869005B810D /* TestFileReader.swift in Sources */,
 			);
