@@ -10,6 +10,8 @@
 		E018DF452045650A005B810D /* PlainFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF442045650A005B810D /* PlainFileKey.swift */; };
 		E018DF4B20459869005B810D /* TestFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF4A20459869005B810D /* TestFileReader.swift */; };
 		E018DF4D20459E74005B810D /* files in Resources */ = {isa = PBXBuildFile; fileRef = E018DF4C20459E74005B810D /* files */; };
+		E0259601233E115D0014F4F8 /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259600233E115D0014F4F8 /* DecryptionCipher.swift */; };
+		E0259604233E11720014F4F8 /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259603233E11720014F4F8 /* EncryptionCipher.swift */; };
 		E036566720650D920026F210 /* CryptoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036566620650D920026F210 /* CryptoProtocol.swift */; };
 		E060D439203EC81B00167656 /* CryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060D438203EC81B00167656 /* CryptoError.swift */; };
 		E0688C4B203DC4AE00DD0015 /* UserPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */; };
@@ -19,6 +21,11 @@
 		E0A0928D203C3227002E8C7F /* EncryptedFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */; };
 		E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */; };
 		E0A09293203C7C44002E8C7F /* FileDecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */; };
+		E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9E11022EAE50C000C63DD /* CryptoMock.swift */; };
+		E0A9E11322EAE7FB000C63DD /* OpenSslMock.h in Headers */ = {isa = PBXBuildFile; fileRef = E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E0A9E11522EAE81F000C63DD /* OpenSslMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A9E11422EAE81F000C63DD /* OpenSslMock.m */; };
+		E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */; };
+		E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */; };
 		E0D04187203B04D500658D53 /* crypto_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D04185203B04D500658D53 /* crypto_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0D04192203B087000658D53 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D04191203B087000658D53 /* Crypto.swift */; };
 		E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D04193203B09A800658D53 /* OpenSslCrypto.m */; };
@@ -47,6 +54,8 @@
 		E018DF442045650A005B810D /* PlainFileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainFileKey.swift; sourceTree = "<group>"; };
 		E018DF4A20459869005B810D /* TestFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFileReader.swift; sourceTree = "<group>"; };
 		E018DF4C20459E74005B810D /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = "<group>"; };
+		E0259600233E115D0014F4F8 /* DecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionCipher.swift; sourceTree = "<group>"; };
+		E0259603233E11720014F4F8 /* EncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionCipher.swift; sourceTree = "<group>"; };
 		E036566620650D920026F210 /* CryptoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoProtocol.swift; sourceTree = "<group>"; };
 		E060D438203EC81B00167656 /* CryptoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoError.swift; sourceTree = "<group>"; };
 		E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateKey.swift; sourceTree = "<group>"; };
@@ -57,6 +66,11 @@
 		E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionCipher.swift; sourceTree = "<group>"; };
 		E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionCipher.swift; sourceTree = "<group>"; };
 		E0A09294203C85F0002E8C7F /* CryptoSDK.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CryptoSDK.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E0A9E11022EAE50C000C63DD /* CryptoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMock.swift; sourceTree = "<group>"; };
+		E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSslMock.h; sourceTree = "<group>"; };
+		E0A9E11422EAE81F000C63DD /* OpenSslMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslMock.m; sourceTree = "<group>"; };
+		E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionMock.swift; sourceTree = "<group>"; };
+		E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionMock.swift; sourceTree = "<group>"; };
 		E0D04182203B04D500658D53 /* crypto_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = crypto_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D04185203B04D500658D53 /* crypto_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypto_sdk.h; sourceTree = "<group>"; };
 		E0D04191203B087000658D53 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -102,6 +116,8 @@
 				E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */,
 				E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */,
 				E018DF442045650A005B810D /* PlainFileKey.swift */,
+				E0259600233E115D0014F4F8 /* DecryptionCipher.swift */,
+				E0259603233E11720014F4F8 /* EncryptionCipher.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -120,6 +136,18 @@
 				E0A09294203C85F0002E8C7F /* CryptoSDK.playground */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		E0A9E10B22EADC5B000C63DD /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E0A9E11022EAE50C000C63DD /* CryptoMock.swift */,
+				E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */,
+				E0A9E11422EAE81F000C63DD /* OpenSslMock.m */,
+				E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */,
+				E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */,
+			);
+			path = mocks;
 			sourceTree = "<group>";
 		};
 		E0D04178203B04D500658D53 = {
@@ -146,6 +174,7 @@
 		E0D04184203B04D500658D53 /* crypto-sdk */ = {
 			isa = PBXGroup;
 			children = (
+				E0A9E10B22EADC5B000C63DD /* mocks */,
 				E060D43A203F088C00167656 /* model */,
 				E036566620650D920026F210 /* CryptoProtocol.swift */,
 				E0D04191203B087000658D53 /* Crypto.swift */,
@@ -183,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0D04187203B04D500658D53 /* crypto_sdk.h in Headers */,
+				E0A9E11322EAE7FB000C63DD /* OpenSslMock.h in Headers */,
 				E0D0419E203B1DAB00658D53 /* CryptoFramework.h in Headers */,
 				E0D0419D203B1D7600658D53 /* OpenSslCrypto.h in Headers */,
 			);
@@ -234,17 +264,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Dracoon;
 				TargetAttributes = {
 					E0D04181203B04D500658D53 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					E0EF4288204442BA002B17C4 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -297,11 +327,17 @@
 				E0688C4D203DC4BC00DD0015 /* UserPublicKey.swift in Sources */,
 				E0A09293203C7C44002E8C7F /* FileDecryptionCipher.swift in Sources */,
 				E0D04192203B087000658D53 /* Crypto.swift in Sources */,
+				E0A9E11522EAE81F000C63DD /* OpenSslMock.m in Sources */,
 				E036566720650D920026F210 /* CryptoProtocol.swift in Sources */,
+				E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */,
+				E0259601233E115D0014F4F8 /* DecryptionCipher.swift in Sources */,
+				E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */,
 				E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */,
 				E060D439203EC81B00167656 /* CryptoError.swift in Sources */,
 				E0D041A1203B2F9A00658D53 /* CryptoConstants.swift in Sources */,
 				E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */,
+				E0259604233E11720014F4F8 /* EncryptionCipher.swift in Sources */,
+				E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */,
 				E018DF452045650A005B810D /* PlainFileKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,11 +493,11 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DCJ6BPJV88;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -474,6 +510,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -481,7 +518,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -495,7 +532,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DCJ6BPJV88;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -508,6 +545,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -515,7 +553,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -533,7 +571,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -551,7 +589,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

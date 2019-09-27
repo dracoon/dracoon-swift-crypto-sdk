@@ -172,22 +172,22 @@ fail_userKey_rsa:
 }
 
 - (nullable RSA*)decryptPrivateKey:(NSString*)privateKey withPassword:(NSString*) password {
-    
+
     if (privateKey.length <= 0 ||
         password.length <= 0) {
         return nil;
     }
-    
+
     const char *encryptedPrivateKey = privateKey.UTF8String;
     BIO *bio = BIO_new_mem_buf(encryptedPrivateKey, (int)strlen(encryptedPrivateKey));
-    
+
     [[NSThread currentThread] threadDictionary][passwordKey] = password;
     RSA *rsaKey = PEM_read_bio_RSAPrivateKey(bio, NULL, pass_cb, NULL);
     [[NSThread currentThread] threadDictionary][passwordKey] = NULL;
-    
+
     BIO_set_close(bio, BIO_CLOSE);
     BIO_free_all(bio);
-    
+
     return rsaKey;
 }
 

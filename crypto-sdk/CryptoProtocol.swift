@@ -11,6 +11,6 @@ public protocol CryptoProtocol {
     func encryptFileKey(fileKey: PlainFileKey, publicKey: UserPublicKey) throws -> EncryptedFileKey
     func decryptFileKey(fileKey: EncryptedFileKey, privateKey: UserPrivateKey, password: String) throws -> PlainFileKey
     func generateFileKey(version: String) throws -> PlainFileKey
-    func createEncryptionCipher(fileKey: PlainFileKey) throws -> FileEncryptionCipher
-    func createDecryptionCipher(fileKey: PlainFileKey) throws -> FileDecryptionCipher
+    func createEncryptionCipher(fileKey: PlainFileKey) throws -> EncryptionCipher
+    func createDecryptionCipher(fileKey: PlainFileKey) throws -> DecryptionCipher
 }
