@@ -5,6 +5,8 @@
 //  Copyright © 2019 Dracoon. All rights reserved.
 //
 
+import Foundation
+
 public protocol EncryptionCipher {
     var fileKey: PlainFileKey { get }
     func processBlock(fileData: Data) throws -> Data

@@ -11,9 +11,7 @@
 		E018DF4B20459869005B810D /* TestFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF4A20459869005B810D /* TestFileReader.swift */; };
 		E018DF4D20459E74005B810D /* files in Resources */ = {isa = PBXBuildFile; fileRef = E018DF4C20459E74005B810D /* files */; };
 		E0259601233E115D0014F4F8 /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259600233E115D0014F4F8 /* DecryptionCipher.swift */; };
-		E0259602233E115D0014F4F8 /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259600233E115D0014F4F8 /* DecryptionCipher.swift */; };
 		E0259604233E11720014F4F8 /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259603233E11720014F4F8 /* EncryptionCipher.swift */; };
-		E0259605233E11720014F4F8 /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259603233E11720014F4F8 /* EncryptionCipher.swift */; };
 		E036566720650D920026F210 /* CryptoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036566620650D920026F210 /* CryptoProtocol.swift */; };
 		E060D439203EC81B00167656 /* CryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060D438203EC81B00167656 /* CryptoError.swift */; };
 		E0688C4B203DC4AE00DD0015 /* UserPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */; };
@@ -348,10 +346,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0259602233E115D0014F4F8 /* DecryptionCipher.swift in Sources */,
 				E0EF4294204442CA002B17C4 /* CryptoTests.swift in Sources */,
 				E0EF4296204442D2002B17C4 /* FileDecryptionCipherTests.swift in Sources */,
-				E0259605233E11720014F4F8 /* EncryptionCipher.swift in Sources */,
 				E0EF4295204442D0002B17C4 /* FileEncryptionCipherTests.swift in Sources */,
 				E018DF4B20459869005B810D /* TestFileReader.swift in Sources */,
 			);
