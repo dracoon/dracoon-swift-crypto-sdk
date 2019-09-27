@@ -105,7 +105,7 @@ public class Crypto : CryptoProtocol {
         return fileKey
     }
     
-    public func createEncryptionCipher(fileKey: PlainFileKey) throws -> FileEncryptionCipher {
+    public func createEncryptionCipher(fileKey: PlainFileKey) throws -> EncryptionCipher {
         
         guard let vector = crypto.createInitializationVector() else {
             throw CryptoError.generate("Error creating IV")
@@ -119,7 +119,7 @@ public class Crypto : CryptoProtocol {
         return FileEncryptionCipher(crypto: self.crypto, cipher: cipher, fileKey: fileKey)
     }
     
-    public func createDecryptionCipher(fileKey: PlainFileKey) throws -> FileDecryptionCipher {
+    public func createDecryptionCipher(fileKey: PlainFileKey) throws -> DecryptionCipher {
         
         guard let iv = fileKey.iv else {
             throw CryptoError.generate("FileKey has no IV")
