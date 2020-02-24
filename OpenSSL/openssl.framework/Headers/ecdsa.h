@@ -86,7 +86,7 @@ OPENSSL_EXPORT int ECDSA_verify(int type, const uint8_t *digest,
                                 size_t sig_len, const EC_KEY *key);
 
 // ECDSA_size returns the maximum size of an ECDSA signature using |key|. It
-// returns zero on error.
+// returns zero if |key| is NULL or if it doesn't have a group set.
 OPENSSL_EXPORT size_t ECDSA_size(const EC_KEY *key);
 
 
@@ -105,6 +105,12 @@ OPENSSL_EXPORT ECDSA_SIG *ECDSA_SIG_new(void);
 
 // ECDSA_SIG_free frees |sig| its member |BIGNUM|s.
 OPENSSL_EXPORT void ECDSA_SIG_free(ECDSA_SIG *sig);
+
+// ECDSA_SIG_get0_r returns the r component of |sig|.
+OPENSSL_EXPORT const BIGNUM *ECDSA_SIG_get0_r(const ECDSA_SIG *sig);
+
+// ECDSA_SIG_get0_s returns the s component of |sig|.
+OPENSSL_EXPORT const BIGNUM *ECDSA_SIG_get0_s(const ECDSA_SIG *sig);
 
 // ECDSA_SIG_get0 sets |*out_r| and |*out_s|, if non-NULL, to the two
 // components of |sig|.
@@ -179,11 +185,11 @@ OPENSSL_EXPORT int i2d_ECDSA_SIG(const ECDSA_SIG *sig, uint8_t **outp);
 
 extern "C++" {
 
-namespace bssl {
+BSSL_NAMESPACE_BEGIN
 
 BORINGSSL_MAKE_DELETER(ECDSA_SIG, ECDSA_SIG_free)
 
-}  // namespace bssl
+BSSL_NAMESPACE_END
 
 }  // extern C++
 

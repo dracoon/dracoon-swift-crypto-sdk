@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public class FileDecryptionCipher {
+public class FileDecryptionCipher: DecryptionCipher {
     
     private let crypto: CryptoFramework
     private let cipher: Cipher

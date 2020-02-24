@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DRACOON-Crypto-SDK'
-  s.version          = '1.0.2'
+  s.version          = '1.2.0'
   s.summary          = 'Official DRACOON Crypto SDK'
 
   s.description      = <<-DESC
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.module_name      = 'crypto_sdk'
 
   s.ios.deployment_target = '9.3'
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.source_files = 'crypto-sdk/**/*'
   s.vendored_frameworks = 'OpenSSL/openssl.framework'

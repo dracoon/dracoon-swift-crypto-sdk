@@ -24,17 +24,17 @@ class CryptoTests: XCTestCase {
     func testGenerateUserKeyPair_withPassword_returnsKeyPairContainers() {
         let password = "ABC123DEFF456"
         let userKeyPair = try! crypto!.generateUserKeyPair(password: password)
-        
+
         XCTAssertNotNil(userKeyPair.publicKeyContainer)
         XCTAssertNotNil(userKeyPair.privateKeyContainer)
         XCTAssert(userKeyPair.publicKeyContainer.publicKey.starts(with: "-----BEGIN PUBLIC KEY-----"))
         XCTAssert(userKeyPair.privateKeyContainer.privateKey.starts(with: "-----BEGIN ENCRYPTED PRIVATE KEY-----"))
     }
-    
+
     func testGenerateUserKeyPair_withSpecialCharacterPassword_returnsKeyPairContainers() {
         let password = "~ABC123§DEF%F456!"
         let userKeyPair = try! crypto!.generateUserKeyPair(password: password)
-        
+
         XCTAssertNotNil(userKeyPair.publicKeyContainer)
         XCTAssertNotNil(userKeyPair.privateKeyContainer)
         XCTAssert(userKeyPair.publicKeyContainer.publicKey.starts(with: "-----BEGIN PUBLIC KEY-----"))
@@ -44,7 +44,7 @@ class CryptoTests: XCTestCase {
     func testGenerateUserKeyPair_withoutVersion_usesDefaultVersion() {
         let password = "ABC123DEFF456"
         let userKeyPair = try! crypto!.generateUserKeyPair(password: password)
-        
+
         XCTAssertEqual(userKeyPair.publicKeyContainer.version, CryptoConstants.DEFAULT_VERSION)
         XCTAssertEqual(userKeyPair.privateKeyContainer.version, CryptoConstants.DEFAULT_VERSION)
     }
@@ -69,7 +69,7 @@ class CryptoTests: XCTestCase {
     // MARK: Check PrivateKey
     
     func testCheckUserKeyPair_withCorrectInput_returnsTrue() {
-        let password = "ABC123DEFF456"
+        let password = "98h72z51#L"
         let userKeyPair = try! crypto!.generateUserKeyPair(password: password)
         
         XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))

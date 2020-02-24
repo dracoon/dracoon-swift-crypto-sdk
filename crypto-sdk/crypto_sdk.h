@@ -6,6 +6,7 @@
 //
 
 #import "OpenSslCrypto.h"
+#import "OpenSslMock.h"
 
 //! Project version number for crypto_sdk.
 FOUNDATION_EXPORT double crypto_sdkVersionNumber;
