@@ -65,6 +65,14 @@ public class Crypto : CryptoProtocol {
     
     public func encryptFileKey(fileKey: PlainFileKey, publicKey: UserPublicKey) throws -> EncryptedFileKey {
         
+        guard let keyPairVersion = UserKeyPairVersion(rawValue: publicKey.version) else {
+            throw CryptoError.encrypt("Unknown key pair version: \(publicKey.version)")
+        }
+        
+        guard let fileKeyVersion = PlainFileKeyVersion(rawValue: fileKey.version) else {
+            throw CryptoError.generate("Unknown file key version: \(fileKey.version)")
+        }
+        
         guard let iv = fileKey.iv, let tag = fileKey.tag else {
             throw CryptoError.encrypt("Incomplete FileKey")
         }
@@ -73,13 +81,36 @@ public class Crypto : CryptoProtocol {
             throw CryptoError.encrypt("Error encrypting FileKey")
         }
         let encryptedFileKeyContainer = EncryptedFileKey(key: encryptedFileKey,
-                                                         version: fileKey.version,
+                                                         version: self.getEncryptedFileKeyVersion(keyPairVersion: keyPairVersion, fileKeyVersion: fileKeyVersion).rawValue,
                                                          iv: iv,
                                                          tag: tag)
         return encryptedFileKeyContainer
     }
     
+    private func getEncryptedFileKeyVersion(keyPairVersion: UserKeyPairVersion, fileKeyVersion: PlainFileKeyVersion) -> EncryptedFileKeyVersion {
+        switch keyPairVersion {
+        case .A:
+            switch fileKeyVersion {
+            case .A:
+                return .A
+            }
+        case .RSA4096:
+            switch fileKeyVersion {
+            case .A:
+                return .RSA4096_AES256GCM
+            }
+        }
+    }
+    
     public func decryptFileKey(fileKey: EncryptedFileKey, privateKey: UserPrivateKey, password: String) throws -> PlainFileKey {
+        
+        guard UserKeyPairVersion(rawValue: privateKey.version) != nil else {
+            throw CryptoError.encrypt("Unknown key pair version: \(privateKey.version)")
+        }
+        
+        guard EncryptedFileKeyVersion(rawValue: fileKey.version) != nil else {
+            throw CryptoError.generate("Unknown file key version: \(fileKey.version)")
+        }
         
         guard let decryptedFileKey = crypto.decryptFileKey(fileKey.key, privateKey: privateKey.privateKey, password: password) else {
             throw CryptoError.decrypt("Error decrypting FileKey")
@@ -94,8 +125,8 @@ public class Crypto : CryptoProtocol {
     
     public func generateFileKey(version: String) throws -> PlainFileKey {
         
-        guard let fileKeyVersion = FileKeyVersion(rawValue: version) else {
-            throw CryptoError.generate("Unknown file key version")
+        guard let fileKeyVersion = PlainFileKeyVersion(rawValue: version) else {
+            throw CryptoError.generate("Unknown file key version: \(version)")
         }
         
         guard let key = crypto.createFileKey() else {

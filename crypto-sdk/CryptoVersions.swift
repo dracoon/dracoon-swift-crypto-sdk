@@ -6,7 +6,7 @@
 //
 
 public enum UserKeyPairVersion: String {
-    case A
+    case A // Version A is RSA-2048
     case RSA4096 = "RSA-4096"
     
     public func getKeyLength() -> NSNumber {
@@ -19,7 +19,11 @@ public enum UserKeyPairVersion: String {
     }
 }
 
-public enum FileKeyVersion: String {
-    case A
+public enum PlainFileKeyVersion: String {
+    case A // Version A is AES-256-GCM
+}
+
+public enum EncryptedFileKeyVersion: String {
+    case A // Version A is RSA-2048/AES-256-GCM
     case RSA4096_AES256GCM = "RSA-4096/AES-256-GCM"
 }
