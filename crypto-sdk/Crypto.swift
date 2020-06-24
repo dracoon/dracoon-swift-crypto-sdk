@@ -17,17 +17,17 @@ public class Crypto : CryptoProtocol {
     
     // MARK: --- KEY MANAGEMENT ---
     
-    public func generateUserKeyPair(password: String, version: String = CryptoConstants.DEFAULT_VERSION) throws -> UserKeyPair {
+    public func generateUserKeyPair(password: String, version: String) throws -> UserKeyPair {
         
         guard !password.isEmpty else {
             throw CryptoError.generate("Password can't be empty")
         }
         
-        guard version == CryptoConstants.DEFAULT_VERSION else {
-            throw CryptoError.generate("Unknown key pair version")
+        guard let cryptoVersion = UserKeyPairVersion(rawValue: version) else {
+            throw CryptoError.generate("Unknown key pair version: \(version)")
         }
         
-        guard let keyDictionary = crypto.createUserKeyPair(password),
+        guard let keyDictionary = crypto.createUserKeyPair(password, keyLength: cryptoVersion.getKeyLength()),
             let publicKey = keyDictionary["public"] as? String,
             let privateKey = keyDictionary["private"] as? String else {
                 throw CryptoError.generate("Error creating key pair")
@@ -38,10 +38,10 @@ public class Crypto : CryptoProtocol {
         }
         
         let userPublicKey = UserPublicKey(publicKey: publicKey,
-                                          version: version)
+                                          version: cryptoVersion.rawValue)
         
         let userPrivateKey = UserPrivateKey(privateKey: privateKey,
-                                            version: version)
+                                            version: cryptoVersion.rawValue)
         
         let userKeyPair = UserKeyPair(publicKey: userPublicKey,
                                       privateKey: userPrivateKey)
@@ -51,9 +51,9 @@ public class Crypto : CryptoProtocol {
     
     public func checkUserKeyPair(keyPair: UserKeyPair, password: String) -> Bool {
         
-        guard
-            keyPair.privateKeyContainer.version == CryptoConstants.DEFAULT_VERSION,
-            keyPair.publicKeyContainer.version == CryptoConstants.DEFAULT_VERSION
+        guard let privateKeyVersion = UserKeyPairVersion(rawValue: keyPair.privateKeyContainer.version),
+            let publicKeyVersion = UserKeyPairVersion(rawValue: keyPair.publicKeyContainer.version),
+            privateKeyVersion == publicKeyVersion
             else {
                 return false
         }
@@ -92,16 +92,16 @@ public class Crypto : CryptoProtocol {
     
     // MARK: --- SYMMETRIC ENCRYPTION AND DECRYPTION ---
     
-    public func generateFileKey(version: String = CryptoConstants.DEFAULT_VERSION) throws -> PlainFileKey {
+    public func generateFileKey(version: String) throws -> PlainFileKey {
         
-        guard version == CryptoConstants.DEFAULT_VERSION else {
-            throw CryptoError.generate("Unknown key pair version")
+        guard let fileKeyVersion = FileKeyVersion(rawValue: version) else {
+            throw CryptoError.generate("Unknown file key version")
         }
         
         guard let key = crypto.createFileKey() else {
             throw CryptoError.generate("Error creating file key")
         }
-        let fileKey = PlainFileKey(key: key, version: version)
+        let fileKey = PlainFileKey(key: key, version: fileKeyVersion.rawValue)
         return fileKey
     }
     

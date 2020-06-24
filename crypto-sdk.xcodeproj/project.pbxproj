@@ -14,6 +14,7 @@
 		E060D439203EC81B00167656 /* CryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060D438203EC81B00167656 /* CryptoError.swift */; };
 		E0688C4B203DC4AE00DD0015 /* UserPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */; };
 		E0688C4D203DC4BC00DD0015 /* UserPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4C203DC4BC00DD0015 /* UserPublicKey.swift */; };
+		E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */; };
 		E089B0DB21B186ED00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
 		E089B0DC21B186EE00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
 		E0A0928D203C3227002E8C7F /* EncryptedFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */; };
@@ -29,7 +30,6 @@
 		E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D04193203B09A800658D53 /* OpenSslCrypto.m */; };
 		E0D0419D203B1D7600658D53 /* OpenSslCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D04195203B0A4600658D53 /* OpenSslCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0D0419E203B1DAB00658D53 /* CryptoFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D04197203B0AE600658D53 /* CryptoFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E0D041A1203B2F9A00658D53 /* CryptoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A0203B2F9A00658D53 /* CryptoConstants.swift */; };
 		E0D041A3203B316500658D53 /* UserKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A2203B316500658D53 /* UserKeyPair.swift */; };
 		E0EF141920447C9000E6964A /* data in Resources */ = {isa = PBXBuildFile; fileRef = E0EF141820447C9000E6964A /* data */; };
 		E0EF428E204442BA002B17C4 /* crypto_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0D04182203B04D500658D53 /* crypto_sdk.framework */; };
@@ -76,7 +76,7 @@
 		E0D04193203B09A800658D53 /* OpenSslCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslCrypto.m; sourceTree = "<group>"; };
 		E0D04195203B0A4600658D53 /* OpenSslCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSslCrypto.h; sourceTree = "<group>"; };
 		E0D04197203B0AE600658D53 /* CryptoFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoFramework.h; sourceTree = "<group>"; };
-		E0D041A0203B2F9A00658D53 /* CryptoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoConstants.swift; sourceTree = "<group>"; };
+		E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoVersions.swift; sourceTree = "<group>"; };
 		E0D041A2203B316500658D53 /* UserKeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeyPair.swift; sourceTree = "<group>"; };
 		E0EF141820447C9000E6964A /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		E0EF427F20442773002B17C4 /* CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 				E0D04191203B087000658D53 /* Crypto.swift */,
 				E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */,
 				E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */,
-				E0D041A0203B2F9A00658D53 /* CryptoConstants.swift */,
+				E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */,
 				E060D438203EC81B00167656 /* CryptoError.swift */,
 				E0D04185203B04D500658D53 /* crypto_sdk.h */,
 				E0D04197203B0AE600658D53 /* CryptoFramework.h */,
@@ -335,7 +335,7 @@
 				E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */,
 				E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */,
 				E060D439203EC81B00167656 /* CryptoError.swift in Sources */,
-				E0D041A1203B2F9A00658D53 /* CryptoConstants.swift in Sources */,
+				E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */,
 				E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */,
 				E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */,
 				E018DF452045650A005B810D /* PlainFileKey.swift in Sources */,

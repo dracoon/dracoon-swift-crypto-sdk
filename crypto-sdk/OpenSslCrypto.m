@@ -15,7 +15,6 @@
 #import <openssl/x509.h>
 #import <openssl/pkcs12.h>
 
-#define RSA_KEY_LENGTH 2048
 #define SALT_LENGTH 20
 #define ITERATION_COUNT 10000
 
@@ -43,7 +42,7 @@
 #pragma mark -
 #pragma mark Generate UserKeyPair
 
-- (nullable NSDictionary*)createUserKeyPair:(nonnull NSString*)password {
+- (nullable NSDictionary*)createUserKeyPair:(nonnull NSString*)password keyLength:(nonnull NSNumber*)keyLength {
     
     if (password.length <= 0) {
         return nil;
@@ -62,7 +61,7 @@
     BN_set_word(r, RSA_F4);
     
     RSA *rsa = RSA_new();
-    success = RSA_generate_key_ex(rsa, RSA_KEY_LENGTH, r, NULL);
+    success = RSA_generate_key_ex(rsa, keyLength.intValue, r, NULL);
     if (!success) {
         goto fail_userKey_rsa;
     }
@@ -474,12 +473,13 @@ fail_userKey_rsa:
     
     const char *decryptedFileKey = fileKey.UTF8String;
     int decryptedFileKeyBufferLength;
+    int encryptedFileKeyBufferLength = RSA_size(rsaKey);
     
     unsigned char *decryptedFileKeyBuffer = base64_toByte(decryptedFileKey, &decryptedFileKeyBufferLength);
-    unsigned char *encryptedFileKeyBuffer = (unsigned char*)malloc(AES_KEY_LENGTH) ;
-    unsigned char *paddedResult = (unsigned char*)malloc(AES_KEY_LENGTH) ;
+    unsigned char *encryptedFileKeyBuffer = (unsigned char*)malloc(encryptedFileKeyBufferLength);
+    unsigned char *paddedResult = (unsigned char*)malloc(encryptedFileKeyBufferLength);
     
-    int success = RSA_padding_add_PKCS1_OAEP_mgf1(paddedResult, AES_KEY_LENGTH, decryptedFileKeyBuffer, decryptedFileKeyBufferLength, NULL, 0, EVP_sha256(), EVP_sha1());
+    int success = RSA_padding_add_PKCS1_OAEP_mgf1(paddedResult, encryptedFileKeyBufferLength, decryptedFileKeyBuffer, decryptedFileKeyBufferLength, NULL, 0, EVP_sha256(), EVP_sha1());
     
     if (!success) {
         free(encryptedFileKeyBuffer);
@@ -488,13 +488,13 @@ fail_userKey_rsa:
         return nil;
     }
     
-    int bytes = RSA_public_encrypt(AES_KEY_LENGTH, paddedResult, encryptedFileKeyBuffer, rsaKey, RSA_NO_PADDING);
+    int bytes = RSA_public_encrypt(encryptedFileKeyBufferLength, paddedResult, encryptedFileKeyBuffer, rsaKey, RSA_NO_PADDING);
     
     RSA_free(rsaKey);
     free(decryptedFileKeyBuffer);
     free(paddedResult);
     
-    if (bytes != AES_KEY_LENGTH) {
+    if (bytes != encryptedFileKeyBufferLength) {
         free(encryptedFileKeyBuffer);
         return nil;
     }
