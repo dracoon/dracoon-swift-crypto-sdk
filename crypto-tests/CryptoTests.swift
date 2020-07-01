@@ -203,7 +203,7 @@ class CryptoTests: XCTestCase {
         XCTAssert(decryptedKey!.version == PlainFileKeyVersion.A.rawValue)
     }
     
-    func testEncryptFileKey__canDecryptEncryptedKey_withKeyPairVersionRSA4096() {
+    func testEncryptFileKey_canDecryptEncryptedKey_withKeyPairVersionRSA4096() {
         let password = "ABC123DEFF456"
         let plainFileKey = testFileReader?.readPlainFileKey(fileName: "data/plain_file_key.json")
         let userPublicKey = testFileReader?.readPublicKey(fileName: "data/public_key_4096.json")

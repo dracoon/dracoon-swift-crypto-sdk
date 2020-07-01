@@ -1,5 +1,5 @@
 //
-//  CryptoConstants.swift
+//  CryptoVersions.swift
 //  crypto-sdk
 //
 //  Copyright © 2018 Dracoon. All rights reserved.

@@ -471,15 +471,21 @@ fail_userKey_rsa:
         return nil;
     }
     
+    int rsaKeySize = RSA_size(rsaKey);
+    const EVP_MD *mgf1md = getMGF(rsaKeySize);
+    
+    if (mgf1md == NULL) {
+        return nil;
+    }
+    
     const char *decryptedFileKey = fileKey.UTF8String;
     int decryptedFileKeyBufferLength;
-    int encryptedFileKeyBufferLength = RSA_size(rsaKey);
     
     unsigned char *decryptedFileKeyBuffer = base64_toByte(decryptedFileKey, &decryptedFileKeyBufferLength);
-    unsigned char *encryptedFileKeyBuffer = (unsigned char*)malloc(encryptedFileKeyBufferLength);
-    unsigned char *paddedResult = (unsigned char*)malloc(encryptedFileKeyBufferLength);
+    unsigned char *encryptedFileKeyBuffer = (unsigned char*)malloc(rsaKeySize);
+    unsigned char *paddedResult = (unsigned char*)malloc(rsaKeySize);
     
-    int success = RSA_padding_add_PKCS1_OAEP_mgf1(paddedResult, encryptedFileKeyBufferLength, decryptedFileKeyBuffer, decryptedFileKeyBufferLength, NULL, 0, EVP_sha256(), EVP_sha1());
+    int success = RSA_padding_add_PKCS1_OAEP_mgf1(paddedResult, rsaKeySize, decryptedFileKeyBuffer, decryptedFileKeyBufferLength, NULL, 0, EVP_sha256(), mgf1md);
     
     if (!success) {
         free(encryptedFileKeyBuffer);
@@ -488,13 +494,13 @@ fail_userKey_rsa:
         return nil;
     }
     
-    int bytes = RSA_public_encrypt(encryptedFileKeyBufferLength, paddedResult, encryptedFileKeyBuffer, rsaKey, RSA_NO_PADDING);
+    int bytes = RSA_public_encrypt(rsaKeySize, paddedResult, encryptedFileKeyBuffer, rsaKey, RSA_NO_PADDING);
     
     RSA_free(rsaKey);
     free(decryptedFileKeyBuffer);
     free(paddedResult);
     
-    if (bytes != encryptedFileKeyBufferLength) {
+    if (bytes != rsaKeySize) {
         free(encryptedFileKeyBuffer);
         return nil;
     }
@@ -538,6 +544,13 @@ fail_userKey_rsa:
         return nil;
     }
     
+    int rsaKeySize = RSA_size(rsaKey);
+    const EVP_MD *mgf1md = getMGF(rsaKeySize);
+    
+    if (mgf1md == NULL) {
+        return nil;
+    }
+    
     NSData* data;
     NSString* decryptedFileKey;
     
@@ -563,7 +576,7 @@ fail_userKey_rsa:
     success = (EVP_PKEY_decrypt_init(ctx) &&
                EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_OAEP_PADDING) &&
                EVP_PKEY_CTX_set_rsa_oaep_md(ctx, EVP_sha256()) &&
-               EVP_PKEY_CTX_set_rsa_mgf1_md(ctx, EVP_sha1()));
+               EVP_PKEY_CTX_set_rsa_mgf1_md(ctx, mgf1md));
     if (!success) {
         goto fail_decrypt_fileKey_ctx;
     }
@@ -653,6 +666,17 @@ void createPasswordBuffer(NSString *str, char* bytes) {
 
 #pragma mark -
 #pragma mark Helper
+
+const EVP_MD* getMGF(int rsaSize);
+
+const EVP_MD* getMGF(int rsaSize) {
+    if (rsaSize == 256) {
+        return EVP_sha1();
+    } else if (rsaSize == 512) {
+        return EVP_sha256();
+    }
+    return NULL;
+}
 
 unsigned char *base64_toByte(const char *input, int *length);
 
