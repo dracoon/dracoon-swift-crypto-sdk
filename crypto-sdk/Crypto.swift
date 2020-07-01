@@ -108,14 +108,14 @@ public class Crypto : CryptoProtocol {
     
     private func getEncryptedFileKeyVersion(keyPairVersion: UserKeyPairVersion, fileKeyVersion: PlainFileKeyVersion) -> EncryptedFileKeyVersion {
         switch keyPairVersion {
-        case .A:
+        case .RSA2048:
             switch fileKeyVersion {
-            case .A:
-                return .A
+            case .AES256GCM:
+                return .RSA2048_AES256GCM
             }
         case .RSA4096:
             switch fileKeyVersion {
-            case .A:
+            case .AES256GCM:
                 return .RSA4096_AES256GCM
             }
         }
@@ -123,10 +123,10 @@ public class Crypto : CryptoProtocol {
     
     private func getPlainFileKeyVersion(fileKeyVersion: EncryptedFileKeyVersion) -> PlainFileKeyVersion {
         switch fileKeyVersion {
-        case .A:
-            return .A
+        case .RSA2048_AES256GCM:
+            return .AES256GCM
         case .RSA4096_AES256GCM:
-            return .A
+            return .AES256GCM
         }
     }
     

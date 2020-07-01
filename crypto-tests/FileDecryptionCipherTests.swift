@@ -43,7 +43,7 @@ class FileDecryptionCipherTests: XCTestCase {
         let key = "9CnEFV3i92P3aDttUzvBWs71nUkGKDgcVpxw3TY64Aw="
         let iv = "pgq//CZzM0fGG0rM"
         let tag = "vVgfiUGv/7qJTGifVNDJfw=="
-        let fileKey = PlainFileKey(key: key, version: PlainFileKeyVersion.A.rawValue)
+        let fileKey = PlainFileKey(key: key, version: PlainFileKeyVersion.AES256GCM.rawValue)
         fileKey.iv = iv
         fileKey.tag = tag
         

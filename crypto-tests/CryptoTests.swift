@@ -14,29 +14,29 @@ class CryptoTests: XCTestCase {
     var testFileReader: TestFileReader?
     
     override func setUp() {
+        super.setUp()
         crypto = Crypto()
         testFileReader = TestFileReader()
-        super.setUp()
     }
     
     // MARK: Crypto Versions
     
     func testUserKeyPairVersion_returnsExpectedRawValue() {
-        XCTAssert(UserKeyPairVersion.A.rawValue == "A")
+        XCTAssert(UserKeyPairVersion.RSA2048.rawValue == "A")
         XCTAssert(UserKeyPairVersion.RSA4096.rawValue == "RSA-4096")
     }
     
     func testUserKeyPairVersion_returnsExpectedRSAKeyLength() {
-        XCTAssert(UserKeyPairVersion.A.getKeyLength().intValue == 2048)
+        XCTAssert(UserKeyPairVersion.RSA2048.getKeyLength().intValue == 2048)
         XCTAssert(UserKeyPairVersion.RSA4096.getKeyLength().intValue == 4096)
     }
     
     func testPlainFileKeyVersion_returnsExpectedRawValue() {
-        XCTAssert(PlainFileKeyVersion.A.rawValue == "A")
+        XCTAssert(PlainFileKeyVersion.AES256GCM.rawValue == "A")
     }
     
     func testEncryptedFileKeyVersion_returnsExpectedRawValue() {
-        XCTAssert(EncryptedFileKeyVersion.A.rawValue == "A")
+        XCTAssert(EncryptedFileKeyVersion.RSA2048_AES256GCM.rawValue == "A")
         XCTAssert(EncryptedFileKeyVersion.RSA4096_AES256GCM.rawValue == "RSA-4096/AES-256-GCM")
     }
     
@@ -44,7 +44,7 @@ class CryptoTests: XCTestCase {
     
     func testGenerateUserKeyPair_withPassword_returnsKeyPairContainers() {
         let password = "ABC123DEFF456"
-        let version = UserKeyPairVersion.A.rawValue
+        let version = UserKeyPairVersion.RSA2048.rawValue
         let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: version)
         
         XCTAssertNotNil(userKeyPair.publicKeyContainer)
@@ -70,7 +70,7 @@ class CryptoTests: XCTestCase {
     
     func testGenerateUserKeyPair_withSpecialCharacterPassword_returnsKeyPairContainers() {
         let password = "~ABC123§DEF%F456!"
-        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.A.rawValue)
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA2048.rawValue)
         
         XCTAssertNotNil(userKeyPair.publicKeyContainer)
         XCTAssertNotNil(userKeyPair.privateKeyContainer)
@@ -81,7 +81,7 @@ class CryptoTests: XCTestCase {
     func testGenerateUserKeyPair_withEmptyPassword_throwsError() {
         let expectedError = CryptoError.generate("Password can't be empty")
         
-        XCTAssertThrowsError(try crypto!.generateUserKeyPair(password: "", version: UserKeyPairVersion.A.rawValue)) { (error) -> Void in
+        XCTAssertThrowsError(try crypto!.generateUserKeyPair(password: "", version: UserKeyPairVersion.RSA2048.rawValue)) { (error) -> Void in
             XCTAssertEqual(error as? CryptoError, expectedError)
         }
     }
@@ -97,15 +97,8 @@ class CryptoTests: XCTestCase {
     
     // MARK: Check PrivateKey
     
-    func testCheckUserKeyPair_withCorrectInput_returnsTrue() {
-        let password = "98h72z51#L"
-        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.A.rawValue)
-        
-        XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
-    }
-    
     func testCheckUserKeyPair_withUnknownVersion_returnsFalse() {
-        let userKeyPair = UserKeyPair(publicKey: UserPublicKey(publicKey: "testKey", version: UserKeyPairVersion.A.rawValue),
+        let userKeyPair = UserKeyPair(publicKey: UserPublicKey(publicKey: "testKey", version: UserKeyPairVersion.RSA2048.rawValue),
                                       privateKey: UserPrivateKey(privateKey: "testKey", version: "Z"))
 
         XCTAssertFalse(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: "password"))
@@ -113,17 +106,31 @@ class CryptoTests: XCTestCase {
     
     func testCheckUserKeyPair_withInvalidPrivateKey_returnsFalse() {
         let password = "ABC123DEFF456"
-        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.A.rawValue)
-        userKeyPair.privateKeyContainer = UserPrivateKey(privateKey: "ABCDEFABCDEF", version: UserKeyPairVersion.A.rawValue)
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA2048.rawValue)
+        userKeyPair.privateKeyContainer = UserPrivateKey(privateKey: "ABCDEFABCDEF", version: UserKeyPairVersion.RSA2048.rawValue)
 
         XCTAssertFalse(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
     }
     
     func testCheckUserKeyPair_withInvalidPassword_returnsFalse() {
         let password = "ABC123DEFF456"
-        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.A.rawValue)
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA2048.rawValue)
         
         XCTAssertFalse(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: "0123456789"))
+    }
+    
+    func testCheckUserKeyPair_withRSA2048_returnsTrue() {
+        let password = "ABC123DEFF456"
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA2048.rawValue)
+        
+        XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
+    }
+    
+    func testCheckUserKeyPair_withRSA4096_returnsTrue() {
+        let password = "ABC123DEFF456"
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA4096.rawValue)
+        
+        XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
     }
     
     // MARK: FileKey decryption and encryption
@@ -149,7 +156,7 @@ class CryptoTests: XCTestCase {
         XCTAssertNotNil(plainFileKey)
         XCTAssertEqual(plainFileKey!.iv, encryptedFileKey!.iv)
         XCTAssertEqual(plainFileKey!.tag, encryptedFileKey!.tag)
-        XCTAssertEqual(encryptedFileKey!.version, EncryptedFileKeyVersion.A.rawValue)
+        XCTAssertEqual(encryptedFileKey!.version, EncryptedFileKeyVersion.RSA2048_AES256GCM.rawValue)
     }
     
     func testDecryptFileKey_withKeyPairVersionRSA4096_returnsExpectedVersion() {
@@ -199,8 +206,8 @@ class CryptoTests: XCTestCase {
         
         XCTAssertNotNil(decryptedKey)
         XCTAssertEqual(decryptedKey!.key, plainFileKey!.key)
-        XCTAssert(encryptedKey!.version == EncryptedFileKeyVersion.A.rawValue)
-        XCTAssert(decryptedKey!.version == PlainFileKeyVersion.A.rawValue)
+        XCTAssert(encryptedKey!.version == EncryptedFileKeyVersion.RSA2048_AES256GCM.rawValue)
+        XCTAssert(decryptedKey!.version == PlainFileKeyVersion.AES256GCM.rawValue)
     }
     
     func testEncryptFileKey_canDecryptEncryptedKey_withKeyPairVersionRSA4096() {
@@ -216,7 +223,7 @@ class CryptoTests: XCTestCase {
         XCTAssertNotNil(decryptedKey)
         XCTAssertEqual(decryptedKey!.key, plainFileKey!.key)
         XCTAssert(encryptedKey!.version == EncryptedFileKeyVersion.RSA4096_AES256GCM.rawValue)
-        XCTAssert(decryptedKey!.version == PlainFileKeyVersion.A.rawValue)
+        XCTAssert(decryptedKey!.version == PlainFileKeyVersion.AES256GCM.rawValue)
     }
     
     // MARK: Generate FileKey
@@ -232,12 +239,12 @@ class CryptoTests: XCTestCase {
     func testGenerateFileKey_returnsPlainFileKey() {
         let base64EncodedAES256KeyCharacterCount = 44
         
-        let plainFileKey = try? crypto!.generateFileKey(version: PlainFileKeyVersion.A.rawValue)
+        let plainFileKey = try? crypto!.generateFileKey(version: PlainFileKeyVersion.AES256GCM.rawValue)
         
         XCTAssertNotNil(plainFileKey)
         XCTAssertNotNil(plainFileKey!.key)
         XCTAssert(plainFileKey!.key.count == base64EncodedAES256KeyCharacterCount)
-        XCTAssertEqual(plainFileKey!.version, PlainFileKeyVersion.A.rawValue)
+        XCTAssertEqual(plainFileKey!.version, PlainFileKeyVersion.AES256GCM.rawValue)
         XCTAssertNil(plainFileKey!.iv)
         XCTAssertNil(plainFileKey!.tag)
     }
