@@ -17,4 +17,16 @@ public class EncryptedFileKey: Codable {
         self.iv = iv
         self.tag = tag
     }
+    
+    public func getUserKeyPairVersion() -> UserKeyPairVersion? {
+        guard let fileKeyVersion = EncryptedFileKeyVersion(rawValue: self.version) else {
+            return nil
+        }
+        switch fileKeyVersion {
+        case .RSA2048_AES256GCM:
+            return .RSA2048
+        case .RSA4096_AES256GCM:
+            return .RSA4096
+        }
+    }
 }
