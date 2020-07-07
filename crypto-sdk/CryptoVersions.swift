@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public enum UserKeyPairVersion: String {
+public enum UserKeyPairVersion: String, Codable {
     case RSA2048 = "A"
     case RSA4096 = "RSA-4096"
     
@@ -19,11 +19,11 @@ public enum UserKeyPairVersion: String {
     }
 }
 
-public enum PlainFileKeyVersion: String {
+public enum PlainFileKeyVersion: String, Codable {
     case AES256GCM = "A"
 }
 
-public enum EncryptedFileKeyVersion: String {
+public enum EncryptedFileKeyVersion: String, Codable {
     case RSA2048_AES256GCM = "A"
     case RSA4096_AES256GCM = "RSA-4096/AES-256-GCM"
 }

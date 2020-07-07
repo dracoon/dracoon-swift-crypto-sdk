@@ -17,17 +17,13 @@ public class Crypto : CryptoProtocol {
     
     // MARK: --- KEY MANAGEMENT ---
     
-    public func generateUserKeyPair(password: String, version: String) throws -> UserKeyPair {
+    public func generateUserKeyPair(password: String, version: UserKeyPairVersion) throws -> UserKeyPair {
         
         guard !password.isEmpty else {
             throw CryptoError.generate("Password can't be empty")
         }
         
-        guard let cryptoVersion = UserKeyPairVersion(rawValue: version) else {
-            throw CryptoError.generate("Unknown key pair version: \(version)")
-        }
-        
-        guard let keyDictionary = crypto.createUserKeyPair(password, keyLength: cryptoVersion.getKeyLength()),
+        guard let keyDictionary = crypto.createUserKeyPair(password, keyLength: version.getKeyLength()),
             let publicKey = keyDictionary["public"] as? String,
             let privateKey = keyDictionary["private"] as? String else {
                 throw CryptoError.generate("Error creating key pair")
@@ -37,12 +33,8 @@ public class Crypto : CryptoProtocol {
             throw CryptoError.generate("Error checking key pair")
         }
         
-        let userPublicKey = UserPublicKey(publicKey: publicKey,
-                                          version: cryptoVersion.rawValue)
-        
-        let userPrivateKey = UserPrivateKey(privateKey: privateKey,
-                                            version: cryptoVersion.rawValue)
-        
+        let userPublicKey = UserPublicKey(publicKey: publicKey, version: version)
+        let userPrivateKey = UserPrivateKey(privateKey: privateKey, version: version)
         let userKeyPair = UserKeyPair(publicKey: userPublicKey,
                                       privateKey: userPrivateKey)
         
@@ -51,9 +43,7 @@ public class Crypto : CryptoProtocol {
     
     public func checkUserKeyPair(keyPair: UserKeyPair, password: String) -> Bool {
         
-        guard let privateKeyVersion = UserKeyPairVersion(rawValue: keyPair.privateKeyContainer.version),
-            let publicKeyVersion = UserKeyPairVersion(rawValue: keyPair.publicKeyContainer.version),
-            privateKeyVersion == publicKeyVersion
+        guard keyPair.privateKeyContainer.version.rawValue == keyPair.publicKeyContainer.version.rawValue
             else {
                 return false
         }
@@ -65,14 +55,6 @@ public class Crypto : CryptoProtocol {
     
     public func encryptFileKey(fileKey: PlainFileKey, publicKey: UserPublicKey) throws -> EncryptedFileKey {
         
-        guard let keyPairVersion = UserKeyPairVersion(rawValue: publicKey.version) else {
-            throw CryptoError.encrypt("Unknown key pair version: \(publicKey.version)")
-        }
-        
-        guard let fileKeyVersion = PlainFileKeyVersion(rawValue: fileKey.version) else {
-            throw CryptoError.generate("Unknown file key version: \(fileKey.version)")
-        }
-        
         guard let iv = fileKey.iv, let tag = fileKey.tag else {
             throw CryptoError.encrypt("Incomplete FileKey")
         }
@@ -81,7 +63,7 @@ public class Crypto : CryptoProtocol {
             throw CryptoError.encrypt("Error encrypting FileKey")
         }
         let encryptedFileKeyContainer = EncryptedFileKey(key: encryptedFileKey,
-                                                         version: self.getEncryptedFileKeyVersion(keyPairVersion: keyPairVersion, fileKeyVersion: fileKeyVersion).rawValue,
+                                                         version: self.getEncryptedFileKeyVersion(keyPairVersion: publicKey.version, fileKeyVersion: fileKey.version),
                                                          iv: iv,
                                                          tag: tag)
         return encryptedFileKeyContainer
@@ -89,18 +71,10 @@ public class Crypto : CryptoProtocol {
     
     public func decryptFileKey(fileKey: EncryptedFileKey, privateKey: UserPrivateKey, password: String) throws -> PlainFileKey {
         
-        guard UserKeyPairVersion(rawValue: privateKey.version) != nil else {
-            throw CryptoError.encrypt("Unknown key pair version: \(privateKey.version)")
-        }
-        
-        guard let fileKeyVersion = EncryptedFileKeyVersion(rawValue: fileKey.version) else {
-            throw CryptoError.generate("Unknown file key version: \(fileKey.version)")
-        }
-        
         guard let decryptedFileKey = crypto.decryptFileKey(fileKey.key, privateKey: privateKey.privateKey, password: password) else {
             throw CryptoError.decrypt("Error decrypting FileKey")
         }
-        let plainFileKeyContainer = PlainFileKey(key: decryptedFileKey, version: self.getPlainFileKeyVersion(fileKeyVersion: fileKeyVersion).rawValue)
+        let plainFileKeyContainer = PlainFileKey(key: decryptedFileKey, version: fileKey.getFileKeyVersion())
         plainFileKeyContainer.iv = fileKey.iv
         plainFileKeyContainer.tag = fileKey.tag
         return plainFileKeyContainer
@@ -121,27 +95,14 @@ public class Crypto : CryptoProtocol {
         }
     }
     
-    private func getPlainFileKeyVersion(fileKeyVersion: EncryptedFileKeyVersion) -> PlainFileKeyVersion {
-        switch fileKeyVersion {
-        case .RSA2048_AES256GCM:
-            return .AES256GCM
-        case .RSA4096_AES256GCM:
-            return .AES256GCM
-        }
-    }
-    
     // MARK: --- SYMMETRIC ENCRYPTION AND DECRYPTION ---
     
-    public func generateFileKey(version: String) throws -> PlainFileKey {
-        
-        guard let fileKeyVersion = PlainFileKeyVersion(rawValue: version) else {
-            throw CryptoError.generate("Unknown file key version: \(version)")
-        }
+    public func generateFileKey(version: PlainFileKeyVersion) throws -> PlainFileKey {
         
         guard let key = crypto.createFileKey() else {
             throw CryptoError.generate("Error creating file key")
         }
-        let fileKey = PlainFileKey(key: key, version: fileKeyVersion.rawValue)
+        let fileKey = PlainFileKey(key: key, version: version)
         return fileKey
     }
     
