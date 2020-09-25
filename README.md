@@ -22,7 +22,7 @@ Xcode 10.2 or newer
 
 Add the SDK to your Cartfile:
 
-`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 1.2.0`
+`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.0.0`
 
 Then run
 
@@ -39,7 +39,7 @@ platform :ios, '9.3'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'DRACOON-Crypto-SDK', '~> v1.2.0'
+pod 'DRACOON-Crypto-SDK', '~> v2.0.0'
 end
 ```
 Then run
