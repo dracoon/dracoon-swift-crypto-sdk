@@ -210,6 +210,23 @@ class CryptoTests: XCTestCase {
         XCTAssert(decryptedKey!.version.rawValue == PlainFileKeyVersion.AES256GCM.rawValue)
     }
     
+    func testEncrypt() {
+        let publicKey = testFileReader?.readPublicKey(fileName: "data/public_key2.json")
+        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "data/plain_file_key.json")
+        let encryptedFileKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: publicKey!)
+        
+        XCTAssertNotNil(encryptedFileKey)
+    }
+    
+    func testDecrypt() {
+        let password = "Qwer1234!"
+        let encryptedFileKey = testFileReader?.readEncryptedFileKey(fileName: "data/enc_file_key2.json")
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "data/private_key2.json")
+        
+        let plainFileKey = try? crypto!.decryptFileKey(fileKey: encryptedFileKey!, privateKey: userPrivateKey!, password: password)
+        XCTAssertNotNil(plainFileKey)
+    }
+    
     // MARK: Generate FileKey
     
     func testGenerateFileKey_returnsPlainFileKey() {

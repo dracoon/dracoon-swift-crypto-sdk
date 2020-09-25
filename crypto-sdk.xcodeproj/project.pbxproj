@@ -17,6 +17,9 @@
 		E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */; };
 		E089B0DB21B186ED00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
 		E089B0DC21B186EE00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
+		E08DE7A624B5BD6900666468 /* DecryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DE7A524B5BD6900666468 /* DecryptionTests.swift */; };
+		E08DE7A924B5BDE800666468 /* sdks in Resources */ = {isa = PBXBuildFile; fileRef = E08DE7A824B5BDE700666468 /* sdks */; };
+		E08DE7AB24B5C4BC00666468 /* EncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */; };
 		E0A0928D203C3227002E8C7F /* EncryptedFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */; };
 		E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */; };
 		E0A09293203C7C44002E8C7F /* FileDecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */; };
@@ -61,6 +64,9 @@
 		E0688C4C203DC4BC00DD0015 /* UserPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPublicKey.swift; sourceTree = "<group>"; };
 		E089B0D821B02A3F00442207 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
 		E089B0DA21B17EAF00442207 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
+		E08DE7A524B5BD6900666468 /* DecryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionTests.swift; sourceTree = "<group>"; };
+		E08DE7A824B5BDE700666468 /* sdks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sdks; sourceTree = "<group>"; };
+		E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionTests.swift; sourceTree = "<group>"; };
 		E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedFileKey.swift; sourceTree = "<group>"; };
 		E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionCipher.swift; sourceTree = "<group>"; };
 		E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionCipher.swift; sourceTree = "<group>"; };
@@ -194,11 +200,14 @@
 		E0EF428A204442BA002B17C4 /* crypto-tests */ = {
 			isa = PBXGroup;
 			children = (
+				E08DE7A824B5BDE700666468 /* sdks */,
 				E018DF4C20459E74005B810D /* files */,
 				E0EF141820447C9000E6964A /* data */,
 				E0EF427F20442773002B17C4 /* CryptoTests.swift */,
 				E0EF428120442789002B17C4 /* FileEncryptionCipherTests.swift */,
 				E0EF42832044279F002B17C4 /* FileDecryptionCipherTests.swift */,
+				E08DE7A524B5BD6900666468 /* DecryptionTests.swift */,
+				E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */,
 				E018DF4A20459869005B810D /* TestFileReader.swift */,
 				E0EF428D204442BA002B17C4 /* Info.plist */,
 			);
@@ -311,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E018DF4D20459E74005B810D /* files in Resources */,
+				E08DE7A924B5BDE800666468 /* sdks in Resources */,
 				E0EF141920447C9000E6964A /* data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,9 +358,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0EF4294204442CA002B17C4 /* CryptoTests.swift in Sources */,
+				E08DE7AB24B5C4BC00666468 /* EncryptionTests.swift in Sources */,
 				E0EF4296204442D2002B17C4 /* FileDecryptionCipherTests.swift in Sources */,
 				E0F65BD72313D88600AAAFDB /* DecryptionCipher.swift in Sources */,
 				E0EF4295204442D0002B17C4 /* FileEncryptionCipherTests.swift in Sources */,
+				E08DE7A624B5BD6900666468 /* DecryptionTests.swift in Sources */,
 				E018DF4B20459869005B810D /* TestFileReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
