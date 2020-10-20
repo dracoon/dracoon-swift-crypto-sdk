@@ -7,9 +7,9 @@
 
 public class UserPrivateKey: Codable {
     public internal(set) var privateKey: String
-    public internal(set) var version: String
+    public internal(set) var version: UserKeyPairVersion
     
-    public init(privateKey: String, version: String) {
+    public init(privateKey: String, version: UserKeyPairVersion) {
         self.privateKey = privateKey
         self.version = version
     }

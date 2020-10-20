@@ -8,7 +8,7 @@
 public class CryptoMock {
     
     public static func getPlainFileKey() -> PlainFileKey {
-        return PlainFileKey(key: "plainFileKey", version: "test")
+        return PlainFileKey(key: "plainFileKey", version: .AES256GCM)
     }
     
     public static func getEncryptionCipher() -> EncryptionCipher {

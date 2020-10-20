@@ -68,11 +68,11 @@ let plainText = "TestABCDEFGH 123\nTestIJKLMNOP 456\nTestQRSTUVWX 789"
 let data = plainText.data(using: .utf8)
 do {
     let password = "correcthorsebatterystaple"
-    let userKeyPair = try crypto.generateUserKeyPair(password: password)
+    let userKeyPair = try crypto.generateUserKeyPair(password: password, version: .RSA4096)
     print("publicKey \(userKeyPair.publicKeyContainer.publicKey)")
     print("privateKey \(userKeyPair.privateKeyContainer.privateKey)")
     
-    let plainFileKey = try crypto.generateFileKey()
+    let plainFileKey = try crypto.generateFileKey(version: .AES256GCM)
     print("plainFileKey \(plainFileKey.key)")
     
     let encryptedData = try encryptData(fileKey: plainFileKey, plainData: data!)

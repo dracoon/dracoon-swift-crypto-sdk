@@ -52,7 +52,7 @@ class FileEncryptionCipherTests: XCTestCase {
         let plainText = "TestABCDEFGH 123\nTestIJKLMNOP 456\nTestQRSTUVWX 789"
         let data = plainText.data(using: .utf8)
         
-        let anotherFileKey = try! crypto!.generateFileKey()
+        let anotherFileKey = try! crypto!.generateFileKey(version: PlainFileKeyVersion.AES256GCM)
         let encryptionCipher = try! crypto!.createEncryptionCipher(fileKey: anotherFileKey)
         let encData = try! encryptionCipher.processBlock(fileData: data!)
         try! encryptionCipher.doFinal()
