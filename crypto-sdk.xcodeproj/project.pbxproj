@@ -10,8 +10,6 @@
 		E018DF452045650A005B810D /* PlainFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF442045650A005B810D /* PlainFileKey.swift */; };
 		E018DF4B20459869005B810D /* TestFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF4A20459869005B810D /* TestFileReader.swift */; };
 		E018DF4D20459E74005B810D /* files in Resources */ = {isa = PBXBuildFile; fileRef = E018DF4C20459E74005B810D /* files */; };
-		E0259601233E115D0014F4F8 /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259600233E115D0014F4F8 /* DecryptionCipher.swift */; };
-		E0259604233E11720014F4F8 /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0259603233E11720014F4F8 /* EncryptionCipher.swift */; };
 		E036566720650D920026F210 /* CryptoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036566620650D920026F210 /* CryptoProtocol.swift */; };
 		E060D439203EC81B00167656 /* CryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060D438203EC81B00167656 /* CryptoError.swift */; };
 		E0688C4B203DC4AE00DD0015 /* UserPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */; };
@@ -60,8 +58,6 @@
 		E018DF442045650A005B810D /* PlainFileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainFileKey.swift; sourceTree = "<group>"; };
 		E018DF4A20459869005B810D /* TestFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFileReader.swift; sourceTree = "<group>"; };
 		E018DF4C20459E74005B810D /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = "<group>"; };
-		E0259600233E115D0014F4F8 /* DecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionCipher.swift; sourceTree = "<group>"; };
-		E0259603233E11720014F4F8 /* EncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionCipher.swift; sourceTree = "<group>"; };
 		E036566620650D920026F210 /* CryptoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoProtocol.swift; sourceTree = "<group>"; };
 		E060D438203EC81B00167656 /* CryptoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoError.swift; sourceTree = "<group>"; };
 		E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateKey.swift; sourceTree = "<group>"; };
@@ -352,7 +348,6 @@
 				E060D439203EC81B00167656 /* CryptoError.swift in Sources */,
 				E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */,
 				E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */,
-				E0259604233E11720014F4F8 /* EncryptionCipher.swift in Sources */,
 				E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */,
 				E018DF452045650A005B810D /* PlainFileKey.swift in Sources */,
 				E0F65BD32313D13B00AAAFDB /* EncryptionCipher.swift in Sources */,
