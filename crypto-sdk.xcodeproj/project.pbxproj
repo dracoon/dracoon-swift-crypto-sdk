@@ -16,8 +16,12 @@
 		E060D439203EC81B00167656 /* CryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060D438203EC81B00167656 /* CryptoError.swift */; };
 		E0688C4B203DC4AE00DD0015 /* UserPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */; };
 		E0688C4D203DC4BC00DD0015 /* UserPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4C203DC4BC00DD0015 /* UserPublicKey.swift */; };
+		E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */; };
 		E089B0DB21B186ED00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
 		E089B0DC21B186EE00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
+		E08DE7A624B5BD6900666468 /* DecryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DE7A524B5BD6900666468 /* DecryptionTests.swift */; };
+		E08DE7A924B5BDE800666468 /* sdks in Resources */ = {isa = PBXBuildFile; fileRef = E08DE7A824B5BDE700666468 /* sdks */; };
+		E08DE7AB24B5C4BC00666468 /* EncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */; };
 		E0A0928D203C3227002E8C7F /* EncryptedFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */; };
 		E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */; };
 		E0A09293203C7C44002E8C7F /* FileDecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */; };
@@ -31,13 +35,15 @@
 		E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D04193203B09A800658D53 /* OpenSslCrypto.m */; };
 		E0D0419D203B1D7600658D53 /* OpenSslCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D04195203B0A4600658D53 /* OpenSslCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0D0419E203B1DAB00658D53 /* CryptoFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D04197203B0AE600658D53 /* CryptoFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E0D041A1203B2F9A00658D53 /* CryptoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A0203B2F9A00658D53 /* CryptoConstants.swift */; };
 		E0D041A3203B316500658D53 /* UserKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A2203B316500658D53 /* UserKeyPair.swift */; };
 		E0EF141920447C9000E6964A /* data in Resources */ = {isa = PBXBuildFile; fileRef = E0EF141820447C9000E6964A /* data */; };
 		E0EF428E204442BA002B17C4 /* crypto_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0D04182203B04D500658D53 /* crypto_sdk.framework */; };
 		E0EF4294204442CA002B17C4 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EF427F20442773002B17C4 /* CryptoTests.swift */; };
 		E0EF4295204442D0002B17C4 /* FileEncryptionCipherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EF428120442789002B17C4 /* FileEncryptionCipherTests.swift */; };
 		E0EF4296204442D2002B17C4 /* FileDecryptionCipherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EF42832044279F002B17C4 /* FileDecryptionCipherTests.swift */; };
+		E0F65BD32313D13B00AAAFDB /* EncryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD22313D13B00AAAFDB /* EncryptionCipher.swift */; };
+		E0F65BD52313D15D00AAAFDB /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD42313D15D00AAAFDB /* DecryptionCipher.swift */; };
+		E0F65BD72313D88600AAAFDB /* DecryptionCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F65BD42313D15D00AAAFDB /* DecryptionCipher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,9 @@
 		E0688C4C203DC4BC00DD0015 /* UserPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPublicKey.swift; sourceTree = "<group>"; };
 		E089B0D821B02A3F00442207 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
 		E089B0DA21B17EAF00442207 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
+		E08DE7A524B5BD6900666468 /* DecryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionTests.swift; sourceTree = "<group>"; };
+		E08DE7A824B5BDE700666468 /* sdks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sdks; sourceTree = "<group>"; };
+		E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionTests.swift; sourceTree = "<group>"; };
 		E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedFileKey.swift; sourceTree = "<group>"; };
 		E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionCipher.swift; sourceTree = "<group>"; };
 		E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionCipher.swift; sourceTree = "<group>"; };
@@ -77,7 +86,7 @@
 		E0D04193203B09A800658D53 /* OpenSslCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslCrypto.m; sourceTree = "<group>"; };
 		E0D04195203B0A4600658D53 /* OpenSslCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSslCrypto.h; sourceTree = "<group>"; };
 		E0D04197203B0AE600658D53 /* CryptoFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoFramework.h; sourceTree = "<group>"; };
-		E0D041A0203B2F9A00658D53 /* CryptoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoConstants.swift; sourceTree = "<group>"; };
+		E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoVersions.swift; sourceTree = "<group>"; };
 		E0D041A2203B316500658D53 /* UserKeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeyPair.swift; sourceTree = "<group>"; };
 		E0EF141820447C9000E6964A /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		E0EF427F20442773002B17C4 /* CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
@@ -85,6 +94,8 @@
 		E0EF42832044279F002B17C4 /* FileDecryptionCipherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionCipherTests.swift; sourceTree = "<group>"; };
 		E0EF4289204442BA002B17C4 /* crypto-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "crypto-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EF428D204442BA002B17C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F65BD22313D13B00AAAFDB /* EncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionCipher.swift; sourceTree = "<group>"; };
+		E0F65BD42313D15D00AAAFDB /* DecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionCipher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +127,8 @@
 				E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */,
 				E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */,
 				E018DF442045650A005B810D /* PlainFileKey.swift */,
-				E0259600233E115D0014F4F8 /* DecryptionCipher.swift */,
-				E0259603233E11720014F4F8 /* EncryptionCipher.swift */,
+				E0F65BD22313D13B00AAAFDB /* EncryptionCipher.swift */,
+				E0F65BD42313D15D00AAAFDB /* DecryptionCipher.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -180,7 +191,7 @@
 				E0D04191203B087000658D53 /* Crypto.swift */,
 				E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */,
 				E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */,
-				E0D041A0203B2F9A00658D53 /* CryptoConstants.swift */,
+				E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */,
 				E060D438203EC81B00167656 /* CryptoError.swift */,
 				E0D04185203B04D500658D53 /* crypto_sdk.h */,
 				E0D04197203B0AE600658D53 /* CryptoFramework.h */,
@@ -193,11 +204,14 @@
 		E0EF428A204442BA002B17C4 /* crypto-tests */ = {
 			isa = PBXGroup;
 			children = (
+				E08DE7A824B5BDE700666468 /* sdks */,
 				E018DF4C20459E74005B810D /* files */,
 				E0EF141820447C9000E6964A /* data */,
 				E0EF427F20442773002B17C4 /* CryptoTests.swift */,
 				E0EF428120442789002B17C4 /* FileEncryptionCipherTests.swift */,
 				E0EF42832044279F002B17C4 /* FileDecryptionCipherTests.swift */,
+				E08DE7A524B5BD6900666468 /* DecryptionTests.swift */,
+				E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */,
 				E018DF4A20459869005B810D /* TestFileReader.swift */,
 				E0EF428D204442BA002B17C4 /* Info.plist */,
 			);
@@ -264,7 +278,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Dracoon;
 				TargetAttributes = {
 					E0D04181203B04D500658D53 = {
@@ -285,6 +299,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E0D04178203B04D500658D53;
 			productRefGroup = E0D04183203B04D500658D53 /* Products */;
@@ -310,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E018DF4D20459E74005B810D /* files in Resources */,
+				E08DE7A924B5BDE800666468 /* sdks in Resources */,
 				E0EF141920447C9000E6964A /* data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,15 +346,16 @@
 				E0A9E11522EAE81F000C63DD /* OpenSslMock.m in Sources */,
 				E036566720650D920026F210 /* CryptoProtocol.swift in Sources */,
 				E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */,
-				E0259601233E115D0014F4F8 /* DecryptionCipher.swift in Sources */,
+				E0F65BD52313D15D00AAAFDB /* DecryptionCipher.swift in Sources */,
 				E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */,
 				E0D04194203B09A800658D53 /* OpenSslCrypto.m in Sources */,
 				E060D439203EC81B00167656 /* CryptoError.swift in Sources */,
-				E0D041A1203B2F9A00658D53 /* CryptoConstants.swift in Sources */,
+				E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */,
 				E0A0928F203C60DC002E8C7F /* FileEncryptionCipher.swift in Sources */,
 				E0259604233E11720014F4F8 /* EncryptionCipher.swift in Sources */,
 				E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */,
 				E018DF452045650A005B810D /* PlainFileKey.swift in Sources */,
+				E0F65BD32313D13B00AAAFDB /* EncryptionCipher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,8 +364,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0EF4294204442CA002B17C4 /* CryptoTests.swift in Sources */,
+				E08DE7AB24B5C4BC00666468 /* EncryptionTests.swift in Sources */,
 				E0EF4296204442D2002B17C4 /* FileDecryptionCipherTests.swift in Sources */,
+				E0F65BD72313D88600AAAFDB /* DecryptionCipher.swift in Sources */,
 				E0EF4295204442D0002B17C4 /* FileEncryptionCipherTests.swift in Sources */,
+				E08DE7A624B5BD6900666468 /* DecryptionTests.swift in Sources */,
 				E018DF4B20459869005B810D /* TestFileReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +410,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -455,6 +476,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -510,7 +532,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -546,7 +568,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 2.0.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

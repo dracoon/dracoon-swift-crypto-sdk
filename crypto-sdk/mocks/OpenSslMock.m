@@ -11,7 +11,7 @@
 
 @implementation OpenSslMock
 
-- (NSDictionary *)createUserKeyPair:(NSString *)password {
+- (NSDictionary *)createUserKeyPair:(NSString *)password keyLength:(nonnull NSNumber *)keyLength {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     [result setObject:@"publicKey" forKey:@"public"];
     [result setObject:@"privateKey" forKey:@"private"];

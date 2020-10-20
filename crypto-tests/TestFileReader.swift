@@ -45,12 +45,12 @@ class TestFileReader {
                 let iv = fileKeyJson["iv"], let tag = fileKeyJson["tag"] {
                 let fileKey = TestKey()
                 if plain {
-                    let plainKey = PlainFileKey(key: key, version: version)
+                    let plainKey = PlainFileKey(key: key, version: PlainFileKeyVersion(rawValue: version)!)
                     plainKey.iv = iv
                     plainKey.tag = tag
                     fileKey.plainFileKey = plainKey
                 } else {
-                    let encKey = EncryptedFileKey(key: key, version: version, iv: iv, tag: tag)
+                    let encKey = EncryptedFileKey(key: key, version: EncryptedFileKeyVersion(rawValue: version)!, iv: iv, tag: tag)
                     fileKey.encryptedFileKey = encKey
                 }
                 
@@ -89,13 +89,13 @@ class TestFileReader {
                     guard let publicKey = userKeyJson["publicKey"], let version = userKeyJson["version"] else {
                         return nil
                     }
-                    let publicKeyContainer = UserPublicKey(publicKey: publicKey, version: version)
+                    let publicKeyContainer = UserPublicKey(publicKey: publicKey, version: UserKeyPairVersion(rawValue: version)!)
                     userKey.publicKey = publicKeyContainer
                 } else {
                     guard let privateKey = userKeyJson["privateKey"], let version = userKeyJson["version"] else {
                         return nil
                     }
-                    let privateKeyContainer = UserPrivateKey(privateKey: privateKey, version: version)
+                    let privateKeyContainer = UserPrivateKey(privateKey: privateKey, version: UserKeyPairVersion(rawValue: version)!)
                     userKey.privateKey = privateKeyContainer
                 }
                 return userKey

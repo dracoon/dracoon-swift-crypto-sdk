@@ -10,7 +10,8 @@
 
 @protocol CryptoFramework <NSObject>
 
-- (nullable NSDictionary*)createUserKeyPair:(nonnull NSString*)password;
+- (nullable NSDictionary*)createUserKeyPair:(nonnull NSString*)password
+                                            keyLength:(nonnull NSNumber*)keyLength;
 
 - (BOOL)canDecryptPrivateKey:(nonnull NSString*)privateKey withPassword:(nonnull NSString*)password;
 
