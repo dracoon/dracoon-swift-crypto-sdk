@@ -12,7 +12,7 @@ https://support.dracoon.com/hc/en-us/articles/360000986345
 
 #### Minimum Requirements
 
-Xcode 10.2 or newer
+Xcode 12
 
 #### Build boringSSL
 
@@ -26,16 +26,16 @@ Add the SDK to your Cartfile:
 
 Then run
 
-`carthage update --platform iOS`
+`carthage update --use-xcframeworks --platform iOS`
 
-To add the framework to your project, open it in Xcode, choose the "General" tab in targets settings and add it to "Linked Frameworks and Libraries".
+To add the xcframework to your project, open it in Xcode, select the "Build phases" tab in targets settings and add it to "Link Binary With Libraries". Then select "General" and choose "Embed and Sign" in the "Frameworks, Libraries, and Embedded Content" section.
 
 #### CocoaPods
 
 Add to your Podfile:
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.3'
+platform :ios, '11.4'
 use_frameworks!
 
 target '<Your Target Name>' do
