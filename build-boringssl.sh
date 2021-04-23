@@ -28,11 +28,11 @@ build_framework()
 
 # Clone boringSSL
 
-#if [ -d boringssl ]; then
-#rm -rf boringssl
-#fi
+if [ -d boringssl ]; then
+rm -rf boringssl
+fi
 
-#git clone https://boringssl.googlesource.com/boringssl
+git clone https://boringssl.googlesource.com/boringssl
 cd boringssl
 
 # Build frameworks
