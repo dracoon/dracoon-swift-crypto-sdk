@@ -28,11 +28,11 @@ build_framework()
 
 # Clone boringSSL
 
-if [ -d boringssl ]; then
-rm -rf boringssl
-fi
+#if [ -d boringssl ]; then
+#rm -rf boringssl
+#fi
 
-git clone https://boringssl.googlesource.com/boringssl
+#git clone https://boringssl.googlesource.com/boringssl
 cd boringssl
 
 # Build frameworks
@@ -57,6 +57,7 @@ mkdir -p iphonesimulator/openssl.framework
 
 echo "Combine simulator archs..."
 lipo -create -output "iphonesimulator/openssl.framework/openssl" "arm64/openssl.framework/openssl" "x86_64/openssl.framework/openssl"
+cp -r arm64/openssl.framework/Headers iphonesimulator/openssl.framework/
 
 # Create xcframework output directory
 
