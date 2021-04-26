@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DBA0E1532630577600AAFE6D /* openssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA0E14F2630575200AAFE6D /* openssl.xcframework */; };
-		DBA0E1542630577600AAFE6D /* openssl.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBA0E14F2630575200AAFE6D /* openssl.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E018DF452045650A005B810D /* PlainFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF442045650A005B810D /* PlainFileKey.swift */; };
 		E018DF4B20459869005B810D /* TestFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF4A20459869005B810D /* TestFileReader.swift */; };
 		E018DF4D20459E74005B810D /* files in Resources */ = {isa = PBXBuildFile; fileRef = E018DF4C20459E74005B810D /* files */; };
@@ -61,7 +60,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DBA0E1542630577600AAFE6D /* openssl.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +249,6 @@
 				E0D0417D203B04D500658D53 /* Sources */,
 				E0D0417E203B04D500658D53 /* Frameworks */,
 				E0D0417F203B04D500658D53 /* Headers */,
-				E0D04180203B04D500658D53 /* Resources */,
 				DBA0E1552630577600AAFE6D /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -323,13 +320,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E0D04180203B04D500658D53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E0EF4287204442BA002B17C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,7 +542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -592,7 +582,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
