@@ -12,49 +12,39 @@ https://support.dracoon.com/hc/en-us/articles/360000986345
 
 #### Minimum Requirements
 
-Xcode 10.2 or newer
-
-#### Build boringSSL
-
-`./build-boringssl.sh`
+Xcode 12.3
 
 #### Carthage
 
 Add the SDK to your Cartfile:
 
-`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.0.0`
+`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.1.0`
 
 Then run
 
 `carthage update --platform iOS`
 
-To add the framework to your project, open it in Xcode, choose the "General" tab in targets settings and add it to "Linked Frameworks and Libraries".
+to create a framework or
+
+`carthage update --use-xcframeworks --platform iOS`
+
+to create an xcframework.
 
 #### CocoaPods
 
 Add to your Podfile:
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.3'
+platform :ios, '11.4'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'DRACOON-Crypto-SDK', '~> v2.0.0'
+pod 'DRACOON-Crypto-SDK', '~> v2.1.0'
 end
 ```
 Then run
 
 `pod install`
-
-#### Build examples
-
-There is an example app in `build_examples`.
-
-Run `sh setupCarthage.sh` and `sh setupCocoaPods.sh`.
-The run `sh regenerateProjects` to generate both the example projects.
-
-To run the Carthage project open `CryptoSDKCarthageExample.xcodeproj`
-To run the CocoaPods project open `CryptoSDKCocoaPodsExample.xcworkspace`
 
 # Example
 
@@ -100,6 +90,14 @@ keypair, generate file key, encrypt file key, and finally encrypt and decrypt a 
 
     ...
 ```
+
+#### Build boringSSL
+
+If you want to update the crypto library, please adjust and run
+
+`./build-boringssl.sh`
+
+Then copy the content from output dir to the 'OpenSSL' directory.
 
 # Copyright and License
 

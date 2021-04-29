@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DBA0E1532630577600AAFE6D /* openssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA0E14F2630575200AAFE6D /* openssl.xcframework */; };
 		E018DF452045650A005B810D /* PlainFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF442045650A005B810D /* PlainFileKey.swift */; };
 		E018DF4B20459869005B810D /* TestFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018DF4A20459869005B810D /* TestFileReader.swift */; };
 		E018DF4D20459E74005B810D /* files in Resources */ = {isa = PBXBuildFile; fileRef = E018DF4C20459E74005B810D /* files */; };
@@ -15,8 +16,6 @@
 		E0688C4B203DC4AE00DD0015 /* UserPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */; };
 		E0688C4D203DC4BC00DD0015 /* UserPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0688C4C203DC4BC00DD0015 /* UserPublicKey.swift */; };
 		E069CA9124A35EF4008A8A69 /* CryptoVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A0203B2F9A00658D53 /* CryptoVersions.swift */; };
-		E089B0DB21B186ED00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
-		E089B0DC21B186EE00442207 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E089B0DA21B17EAF00442207 /* openssl.framework */; };
 		E08DE7A624B5BD6900666468 /* DecryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DE7A524B5BD6900666468 /* DecryptionTests.swift */; };
 		E08DE7A924B5BDE800666468 /* sdks in Resources */ = {isa = PBXBuildFile; fileRef = E08DE7A824B5BDE700666468 /* sdks */; };
 		E08DE7AB24B5C4BC00666468 /* EncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */; };
@@ -54,7 +53,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DBA0E1552630577600AAFE6D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		DBA0E14F2630575200AAFE6D /* openssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = openssl.xcframework; sourceTree = "<group>"; };
 		E018DF442045650A005B810D /* PlainFileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainFileKey.swift; sourceTree = "<group>"; };
 		E018DF4A20459869005B810D /* TestFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFileReader.swift; sourceTree = "<group>"; };
 		E018DF4C20459E74005B810D /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = "<group>"; };
@@ -63,7 +76,6 @@
 		E0688C4A203DC4AE00DD0015 /* UserPrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateKey.swift; sourceTree = "<group>"; };
 		E0688C4C203DC4BC00DD0015 /* UserPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPublicKey.swift; sourceTree = "<group>"; };
 		E089B0D821B02A3F00442207 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
-		E089B0DA21B17EAF00442207 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		E08DE7A524B5BD6900666468 /* DecryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptionTests.swift; sourceTree = "<group>"; };
 		E08DE7A824B5BDE700666468 /* sdks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sdks; sourceTree = "<group>"; };
 		E08DE7AA24B5C4BC00666468 /* EncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionTests.swift; sourceTree = "<group>"; };
@@ -99,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E089B0DB21B186ED00442207 /* openssl.framework in Frameworks */,
+				DBA0E1532630577600AAFE6D /* openssl.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +120,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0EF428E204442BA002B17C4 /* crypto_sdk.framework in Frameworks */,
-				E089B0DC21B186EE00442207 /* openssl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +143,7 @@
 		E089B0D921B17E7000442207 /* OpenSSL */ = {
 			isa = PBXGroup;
 			children = (
-				E089B0DA21B17EAF00442207 /* openssl.framework */,
+				DBA0E14F2630575200AAFE6D /* openssl.xcframework */,
 			);
 			path = OpenSSL;
 			sourceTree = "<group>";
@@ -238,7 +249,7 @@
 				E0D0417D203B04D500658D53 /* Sources */,
 				E0D0417E203B04D500658D53 /* Frameworks */,
 				E0D0417F203B04D500658D53 /* Headers */,
-				E0D04180203B04D500658D53 /* Resources */,
+				DBA0E1552630577600AAFE6D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -274,7 +285,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Dracoon;
 				TargetAttributes = {
 					E0D04181203B04D500658D53 = {
@@ -290,7 +301,7 @@
 				};
 			};
 			buildConfigurationList = E0D0417C203B04D500658D53 /* Build configuration list for PBXProject "crypto-sdk" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -309,13 +320,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E0D04180203B04D500658D53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E0EF4287204442BA002B17C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,6 +387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -433,7 +438,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -449,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -493,12 +499,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -508,6 +515,7 @@
 		E0D0418B203B04D500658D53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -525,25 +533,30 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 2.0.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				"VALID_ARCHS[sdk=iphonesimulator*]" = x86_64;
 			};
 			name = Debug;
 		};
 		E0D0418C203B04D500658D53 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -561,19 +574,23 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 2.0.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				"VALID_ARCHS[sdk=iphonesimulator*]" = x86_64;
 			};
 			name = Release;
 		};
@@ -587,7 +604,11 @@
 					"$(PROJECT_DIR)/OpenSSL",
 				);
 				INFOPLIST_FILE = "crypto-tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -605,7 +626,11 @@
 					"$(PROJECT_DIR)/OpenSSL",
 				);
 				INFOPLIST_FILE = "crypto-tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
