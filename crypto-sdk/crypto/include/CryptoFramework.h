@@ -8,6 +8,8 @@
 #ifndef CryptoFramework_h
 #define CryptoFramework_h
 
+#import <Foundation/Foundation.h>
+
 @protocol CryptoFramework <NSObject>
 
 - (nullable NSDictionary*)createUserKeyPair:(nonnull NSString*)password

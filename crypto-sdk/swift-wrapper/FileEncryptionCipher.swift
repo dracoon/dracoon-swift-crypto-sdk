@@ -5,6 +5,8 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
+import Foundation
+
 public class FileEncryptionCipher: EncryptionCipher {
     
     private let crypto: CryptoFramework

@@ -5,8 +5,9 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-#import "OpenSslCrypto.h"
-#import "OpenSslMock.h"
+#import <OpenSslCrypto.h>
+#import <OpenSslMock.h>
+#import <CryptoFramework.h>
 
 //! Project version number for crypto_sdk.
 FOUNDATION_EXPORT double crypto_sdkVersionNumber;
