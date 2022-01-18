@@ -8,7 +8,7 @@
 #ifndef OpenSslMock_h
 #define OpenSslMock_h
 
-#import "Foundation/Foundation.h"
+#import <Foundation/Foundation.h>
 #import "CryptoFramework.h"
 
 @interface OpenSslMock : NSObject<CryptoFramework>

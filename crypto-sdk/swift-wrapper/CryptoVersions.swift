@@ -4,6 +4,7 @@
 //
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
+import Foundation
 
 public enum UserKeyPairVersion: String, Codable {
     case RSA2048 = "A"

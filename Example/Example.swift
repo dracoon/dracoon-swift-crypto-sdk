@@ -1,3 +1,7 @@
+//
+//  Example.swift
+//  crypto-sdk
+//
 
 import crypto_sdk
 
@@ -91,3 +95,4 @@ do {
 } catch {
     print(error)
 }
+
