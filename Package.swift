@@ -33,7 +33,7 @@ let package = Package(
             dependencies: ["sdk-crypto-objc"],
             path: "crypto-sdk/swift-wrapper"),
         .testTarget(
-            name: "crypto_sdk_tests",
+            name: "sdk-crypto-tests",
             dependencies: [
                 .target(name: "crypto_sdk"),
             ],
