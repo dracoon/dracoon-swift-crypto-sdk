@@ -1,3 +1,13 @@
 boringssl/
 output/
 crypto-sdk.xcodeproj/project.xcworkspace/xcuserdata/
+crypto-sdk.xcodeproj/xcuserdata/
+.DS_Store
+.build/
+.swiftpm/
+Example/.DS_Store
+crypto-sdk/.DS_Store
+crypto-sdk/crypto/.DS_Store
+crypto-sdk/crypto/include/.DS_Store
+crypto-tests/.DS_Store
+OpenSSL/.DS_Store
