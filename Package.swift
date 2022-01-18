@@ -28,9 +28,16 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("include")
             ]),
-            .target(
-                name: "crypto_sdk",
-                dependencies: ["sdk-crypto-objc"],
-                path: "crypto-sdk/swift-wrapper")
+        .target(
+            name: "crypto_sdk",
+            dependencies: ["sdk-crypto-objc"],
+            path: "crypto-sdk/swift-wrapper"),
+        .testTarget(
+            name: "crypto_sdk_tests",
+            dependencies: [
+                .target(name: "crypto_sdk"),
+            ],
+            path: "crypto-tests",
+            exclude: ["Info.plist", "files", "data", "sdks"])
     ]
 )
