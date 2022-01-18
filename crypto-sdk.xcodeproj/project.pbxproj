@@ -75,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB0E22C42796DCC300D3F466 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		DBA0E14F2630575200AAFE6D /* openssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = openssl.xcframework; sourceTree = "<group>"; };
 		DBC88A052795940000D67E89 /* crypto_sdk_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = crypto_sdk_objc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC88A072795940000D67E89 /* crypto_sdk_objc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypto_sdk_objc.h; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		E0A0928C203C3227002E8C7F /* EncryptedFileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedFileKey.swift; sourceTree = "<group>"; };
 		E0A0928E203C60DC002E8C7F /* FileEncryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionCipher.swift; sourceTree = "<group>"; };
 		E0A09292203C7C44002E8C7F /* FileDecryptionCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionCipher.swift; sourceTree = "<group>"; };
-		E0A09294203C85F0002E8C7F /* CryptoSDK.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CryptoSDK.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E0A9E11022EAE50C000C63DD /* CryptoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMock.swift; sourceTree = "<group>"; };
 		E0A9E11222EAE7FB000C63DD /* OpenSslMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSslMock.h; sourceTree = "<group>"; };
 		E0A9E11422EAE81F000C63DD /* OpenSslMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslMock.m; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 		E0A09295203C8712002E8C7F /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				E0A09294203C85F0002E8C7F /* CryptoSDK.playground */,
+				DB0E22C42796DCC300D3F466 /* Example.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
