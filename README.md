@@ -14,11 +14,17 @@ https://support.dracoon.com/hc/en-us/articles/360000986345
 
 Xcode 12.3
 
+#### Swift Package Manager
+
+Add this line to the dependencies section of your Package.swift:
+
+`.package(name: "crypto_sdk", url: "https://github.com/dracoon/dracoon-swift-crypto-sdk", .upToNextMajor(from: "2.2.0"))`
+
 #### Carthage
 
 Add the SDK to your Cartfile:
 
-`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.1.0`
+`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.2.0`
 
 Then run
 
@@ -35,11 +41,11 @@ to create an xcframework.
 Add to your Podfile:
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.4'
+platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'DRACOON-Crypto-SDK', '~> v2.1.0'
+pod 'DRACOON-Crypto-SDK', '~> v2.2.0'
 end
 ```
 Then run
