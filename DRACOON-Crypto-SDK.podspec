@@ -18,6 +18,18 @@ Pod::Spec.new do |s|
   s.swift_version = '5.5'
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 arm64' }
 
-  s.source_files = 'crypto-sdk/**/*'
-  s.vendored_frameworks = 'OpenSSL/openssl.framework'
+  s.subspec 'crypto_sdk_objc' do |objc|
+    objc.source_files = 'crypto-sdk/crypto/include/*', 'crypto-sdk-objc/*', 'crypto-sdk/crypto/OpenSslCrypto.m'
+    objc.public_header_files = 'crypto-sdk/crypto/include/*'
+    objc.vendored_frameworks = 'OpenSSL/openssl.xcframework'
+  end
+
+  s.subspec 'crypto_sdk_swift' do |swift|
+    swift.dependency 'DRACOON-Crypto-SDK/crypto_sdk_objc'
+    swift.source_files = 'crypto-sdk/crypto/include/*', 'crypto-sdk-objc/crypto_sdk_objc.h', 'crypto-sdk/**/*'
+    swift.exclude_files = 'crypto-sdk/swift-wrapper/Exports.swift'
+    swift.public_header_files = 'crypto-sdk/crypto/include/*', 'crypto-sdk-objc/crypto_sdk_objc.h'
+    swift.vendored_frameworks = 'OpenSSL/openssl.xcframework'
+  end
+
 end
