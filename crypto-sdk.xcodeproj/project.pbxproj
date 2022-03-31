@@ -338,9 +338,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0D0418A203B04D500658D53 /* Build configuration list for PBXNativeTarget "crypto-sdk" */;
 			buildPhases = (
+				E0D0417F203B04D500658D53 /* Headers */,
 				E0D0417D203B04D500658D53 /* Sources */,
 				E0D0417E203B04D500658D53 /* Frameworks */,
-				E0D0417F203B04D500658D53 /* Headers */,
 				DBA0E1552630577600AAFE6D /* Embed Frameworks */,
 			);
 			buildRules = (
