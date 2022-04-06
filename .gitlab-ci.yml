@@ -19,5 +19,10 @@ unit_tests:
       - TestResults/Logs/Test/*.xcresult
   script:
     - bundle exec fastlane runUnitTests
+    - cp sdk-swift-crypto-sonar/printCodeCoverage.sh TestResults/Logs/Test/
+    - cd TestResults/Logs/Test/
+    - ./printCodeCoverage.sh
+    - cd ../../../
+  coverage: '/Code coverage: \d+\.\d+/'
   tags:
     - darwin-amd64
