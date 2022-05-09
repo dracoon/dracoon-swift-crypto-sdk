@@ -12,19 +12,19 @@ https://support.dracoon.com/hc/en-us/articles/360000986345
 
 #### Minimum Requirements
 
-Xcode 12.3
+Xcode 13
 
 #### Swift Package Manager
 
 Add this line to the dependencies section of your Package.swift:
 
-`.package(name: "crypto_sdk", url: "https://github.com/dracoon/dracoon-swift-crypto-sdk", .upToNextMajor(from: "2.2.0"))`
+`.package(name: "crypto_sdk", url: "https://github.com/dracoon/dracoon-swift-crypto-sdk", .upToNextMajor(from: "2.2.1"))`
 
 #### Carthage
 
 Add the SDK to your Cartfile:
 
-`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.2.0`
+`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.2.1`
 
 Then run
 
@@ -45,7 +45,7 @@ platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'DRACOON-Crypto-SDK', '~> v2.2.0'
+pod 'DRACOON-Crypto-SDK', '~> v2.2.1'
 end
 ```
 Then run

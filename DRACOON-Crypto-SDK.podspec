@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DRACOON-Crypto-SDK'
-  s.version          = '2.2.0'
+  s.version          = '2.2.1'
   s.summary          = 'Official DRACOON Crypto SDK'
 
   s.description      = <<-DESC
