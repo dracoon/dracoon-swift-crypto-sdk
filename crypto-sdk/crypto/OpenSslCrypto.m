@@ -55,7 +55,6 @@
     
     NSString *publicKey;
     NSString *privateKey;
-    char *pwd;
     
     BIGNUM *r = BN_new();
     BN_set_word(r, RSA_F4);
@@ -86,16 +85,13 @@
     
     if (SecRandomCopyBytes(kSecRandomDefault, SALT_LENGTH, salt) != errSecSuccess) {
         goto fail_userKey_salt;
-        return nil;
     }
-    
-    pwd = OPENSSL_malloc(password.length);
-    createPasswordBuffer(password, pwd);
     
     PKCS8_PRIV_KEY_INFO* info;
     info = EVP_PKEY2PKCS8(pkey);
     
     X509_SIG* sig;
+    const char *pwd = password.UTF8String;
     int pwdLength = (int)strlen(pwd);
     sig = PKCS8_encrypt(-1, EVP_aes_256_cbc(), pwd, pwdLength, salt, 20, ITERATION_COUNT, info);
     
@@ -126,7 +122,6 @@
 fail_userKey_pr:
     OPENSSL_free(sig);
     OPENSSL_free(info);
-    OPENSSL_free(pwd);
     BIO_set_close(mem_pr, BIO_CLOSE);
     BIO_free_all(mem_pr);
 fail_userKey_salt:
@@ -177,13 +172,23 @@ fail_userKey_rsa:
         return nil;
     }
 
+    RSA *rsaKey = NULL;
     const char *encryptedPrivateKey = privateKey.UTF8String;
     BIO *bio = BIO_new_mem_buf(encryptedPrivateKey, (int)strlen(encryptedPrivateKey));
 
-    [[NSThread currentThread] threadDictionary][passwordKey] = password;
-    RSA *rsaKey = PEM_read_bio_RSAPrivateKey(bio, NULL, pass_cb, NULL);
-    [[NSThread currentThread] threadDictionary][passwordKey] = NULL;
+    X509_SIG* sig = PEM_read_bio_PKCS8(bio, NULL, NULL, NULL);
+    const char* pwd = [password UTF8String];
+    PKCS8_PRIV_KEY_INFO* info = PKCS8_decrypt(sig, pwd, (int)strlen(pwd));
+    if (info == NULL) {
+        goto fail_decrypt;
+    }
+    EVP_PKEY* pkey = EVP_PKCS82PKEY(info);
+    rsaKey = EVP_PKEY_get1_RSA(pkey);
 
+    OPENSSL_free(info);
+    EVP_PKEY_free(pkey);
+fail_decrypt:
+    OPENSSL_free(sig);
     BIO_set_close(bio, BIO_CLOSE);
     BIO_free_all(bio);
 
@@ -632,36 +637,6 @@ int seed_prng() {
     int status = RAND_status();
     free(buffer);
     return status;
-}
-
-static NSString* passwordKey = @"OpenSslPasswordKey";
-
-int pass_cb(char *buf, int size, int rwflag, void *u);
-
-int pass_cb(char *buf, int size, int rwflag, void *u) {
-    NSString* passwordString = [[NSThread currentThread] threadDictionary][passwordKey];
-    int length = (int)passwordString.length;
-    
-    char bytes[length];
-    createPasswordBuffer(passwordString, bytes);
-    
-    memcpy(buf, bytes, length);
-    
-    return length;
-}
-
-void createPasswordBuffer(NSString *str, char* bytes);
-
-void createPasswordBuffer(NSString *str, char* bytes) {
-    // be compatible to Bouncycastle PKCS5PasswordToBytes()
-    int length = (int)str.length;
-    unichar buffer[length];
-    
-    [str getCharacters:buffer range:NSMakeRange(0, length)];
-    
-    for (int i = 0; i < length; i++) {
-        bytes[i] = buffer[i];
-    }
 }
 
 #pragma mark -

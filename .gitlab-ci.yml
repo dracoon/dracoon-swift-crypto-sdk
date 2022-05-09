@@ -1,0 +1,28 @@
+stages:
+  - unit_tests
+
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+before_script:
+  - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/ios/client/sdk-swift-crypto-sonar.git
+  - cd sdk-swift-crypto-sonar
+  - sh setup.sh
+  - cd ..
+
+unit_tests:
+  dependencies: []
+  stage: unit_tests
+  artifacts:
+    paths:
+      - TestResults/Logs/Test/*.xcresult
+  script:
+    - bundle exec fastlane runUnitTests
+    - cp sdk-swift-crypto-sonar/printCodeCoverage.sh TestResults/Logs/Test/
+    - cd TestResults/Logs/Test/
+    - ./printCodeCoverage.sh
+    - cd ../../../
+  coverage: '/Code coverage: \d+\.\d+/'
+  tags:
+    - darwin-amd64
