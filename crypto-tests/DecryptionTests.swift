@@ -158,8 +158,8 @@ class DecryptionTests: XCTestCase {
     
     func testWeb_decryptFileKey_withRSA2048() {
         let password = "Qwer1234!"
-        let encryptedFileKey = testFileReader?.readEncryptedFileKey(fileName: "sdks/web/enc_file_key_2048.json")
-        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/web/private_key_2048.json")
+        let encryptedFileKey = testFileReader?.readEncryptedFileKey(fileName: "sdks/javascript/enc_file_key_2048.json")
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/javascript/private_key_2048.json")
         
         let plainFileKey = try? crypto!.decryptFileKey(fileKey: encryptedFileKey!, privateKey: userPrivateKey!, password: password)
         
@@ -168,8 +168,8 @@ class DecryptionTests: XCTestCase {
     
     func testWeb_decryptFileKey_withRSA4096() {
         let password = "Qwer1234!"
-        let encryptedFileKey = testFileReader?.readEncryptedFileKey(fileName: "sdks/web/enc_file_key_4096.json")
-        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/web/private_key_4096.json")
+        let encryptedFileKey = testFileReader?.readEncryptedFileKey(fileName: "sdks/javascript/enc_file_key_4096.json")
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/javascript/private_key_4096.json")
         
         let plainFileKey = try? crypto!.decryptFileKey(fileKey: encryptedFileKey!, privateKey: userPrivateKey!, password: password)
         
@@ -177,10 +177,10 @@ class DecryptionTests: XCTestCase {
     }
     
     func testWeb_decryptFile() {
-        let plainFileKey = testFileReader!.readPlainFileKey(fileName: "sdks/web/plain_file_key.json")!
-        let encryptedString = testFileReader!.readFileContent(fileName: "sdks/web/files/aes256gcm/enc_file.b64")!
+        let plainFileKey = testFileReader!.readPlainFileKey(fileName: "sdks/javascript/plain_file_key.json")!
+        let encryptedString = testFileReader!.readFileContent(fileName: "sdks/javascript/files/aes256gcm/enc_file.b64")!
         let encryptedData = Data(base64Encoded: encryptedString)!
-        let expectedString = testFileReader!.readFileContent(fileName: "sdks/web/files/plain_file.b64")!
+        let expectedString = testFileReader!.readFileContent(fileName: "sdks/javascript/files/plain_file.b64")!
         
         let cipher = try! crypto!.createDecryptionCipher(fileKey: plainFileKey)
         let plainData = try! cipher.processBlock(fileData: encryptedData)
