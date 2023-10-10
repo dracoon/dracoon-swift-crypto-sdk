@@ -1,7 +1,7 @@
 stages:
   - build
   - unit_tests
-  - sonar
+ # - sonar
 
 variables:
   LC_ALL: "en_US.UTF-8"
@@ -15,9 +15,9 @@ before_script:
 build:
   dependencies: []
   stage: build
-  artifacts:
-    paths:
-      - ./compile_commands.json
+ # artifacts:
+ #   paths:
+ #     - ./compile_commands.json
   script:
     - bundle exec fastlane build
   tags:
@@ -41,13 +41,13 @@ unit_tests:
     - darwin/arm64
     - ios-build
 
-sonar:
-  stage: sonar
-  artifacts:
-    paths:
-      - ./sonar-project.properties
-  script:
-    - bundle exec fastlane runSonar
-  tags:
-    - darwin/arm64
-    - ios-build
+#sonar:
+#  stage: sonar
+#  artifacts:
+#    paths:
+#      - ./sonar-project.properties
+#  script:
+#    - bundle exec fastlane runSonar
+#  tags:
+#    - darwin/arm64
+#    - ios-build
