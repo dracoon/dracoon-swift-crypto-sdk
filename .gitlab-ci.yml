@@ -1,5 +1,7 @@
 stages:
+  - build
   - unit_tests
+  - sonar
 
 variables:
   LC_ALL: "en_US.UTF-8"
@@ -10,6 +12,18 @@ before_script:
   - cd sdk-swift-crypto-sonar
   - sh setup.sh
   - cd ..
+
+build:
+  dependencies: []
+  stage: build
+  artifacts:
+    paths:
+      - ./compile_commands.json
+  script:
+    - bundle exec fastlane build
+  tags:
+    - darwin/arm64
+    - ios-build
 
 unit_tests:
   dependencies: []
@@ -25,4 +39,16 @@ unit_tests:
     - cd ../../../
   coverage: '/Code coverage: \d+\.\d+/'
   tags:
-    - darwin-amd64
+    - darwin/arm64
+    - ios-build
+
+sonar:
+  stage: sonar
+  artifacts:
+    paths:
+      - ./sonar-project.properties
+  script:
+    - bundle exec fastlane runSonar
+  tags:
+    - darwin/arm64
+    - ios-build
