@@ -33,9 +33,7 @@ unit_tests:
   script:
     - bundle exec fastlane runUnitTests
     - cp sdk-swift-crypto-sonar/printCodeCoverage.sh TestResults/Logs/Test/
-    - cd TestResults/Logs/Test/
-    - ./printCodeCoverage.sh
-    - cd ../../../
+    - sh TestResults/Logs/Test/printCodeCoverage.sh
   coverage: '/Code coverage: \d+\.\d+/'
   tags:
     - darwin/arm64
