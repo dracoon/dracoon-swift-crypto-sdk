@@ -1,3 +1,4 @@
+# For some reason artifact upload does not work for this pipeline, so I implemented a manual cache.
 stages:
   - build
   - unit_tests
