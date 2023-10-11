@@ -11,16 +11,14 @@ variables:
 before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/ios/client/sdk-swift-crypto-sonar.git
   - sh sdk-swift-crypto-sonar/setup.sh
-  - sh /opt/gitlab/Library/cleanupArtifacts.sh
-  - mkdir /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
 
 build:
   dependencies: []
   stage: build
   script:
     - bundle exec fastlane build
-    - ([ -e "compile_commands.json" ] && echo "compilation db file exists" || echo "compilation db file does not exist")
-    - ls -l compile_commands.json
+    - sh /opt/gitlab/Library/cleanupArtifacts.sh
+    - mkdir /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
     - cp compile_commands.json /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
   #artifacts:
   #  paths:
