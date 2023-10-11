@@ -27,9 +27,9 @@ build:
 unit_tests:
   dependencies: []
   stage: unit_tests
-  artifacts:
-    paths:
-      - TestResults/Logs/Test/*.xcresult
+  #artifacts:
+  #  paths:
+  #    - TestResults/Logs/Test/*.xcresult
   script:
     - bundle exec fastlane runUnitTests
     - cp sdk-swift-crypto-sonar/printCodeCoverage.sh TestResults/Logs/Test/
