@@ -18,6 +18,7 @@ build:
   script:
     - bundle exec fastlane build
     - ([ -e "compile_commands.json" ] && echo "compilation db file exists" || echo "compilation db file does not exist")
+    - ls -l compile_commands.json
   artifacts:
     paths:
       - compile_commands.json
