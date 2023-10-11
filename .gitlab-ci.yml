@@ -12,7 +12,7 @@ before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/ios/client/sdk-swift-crypto-sonar.git
   - sh sdk-swift-crypto-sonar/setup.sh
   - sh /opt/gitlab/Library/cleanupArtifacts.sh
-  - mkdir /opt/gitlab/Library/Artifacts/${CI_JOB_ID}
+  - mkdir /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
 
 build:
   dependencies: []
@@ -21,7 +21,7 @@ build:
     - bundle exec fastlane build
     - ([ -e "compile_commands.json" ] && echo "compilation db file exists" || echo "compilation db file does not exist")
     - ls -l compile_commands.json
-    - cp compile_commands.json /opt/gitlab/Library/Artifacts/${CI_JOB_ID}
+    - cp compile_commands.json /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
   #artifacts:
   #  paths:
   #    - $CI_PROJECT_DIR/compile_commands.json
@@ -39,7 +39,7 @@ unit_tests:
     - bundle exec fastlane runUnitTests
     - cp sdk-swift-crypto-sonar/printCodeCoverage.sh TestResults/Logs/Test/
     - sh TestResults/Logs/Test/printCodeCoverage.sh
-    - cp -r TestResults /opt/gitlab/Library/Artifacts/${CI_JOB_ID}
+    - cp -r TestResults /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
   coverage: '/Code coverage: \d+\.\d+/'
   tags:
     - darwin/arm64
@@ -54,8 +54,8 @@ sonar:
   #  paths:
   #    - ./sonar-project.properties
   script:
-    - cp /opt/gitlab/Library/Artifacts/${CI_JOB_ID}/compile_commands.json .
-    - cp -r /opt/gitlab/Library/Artifacts/${CI_JOB_ID}/TestResults .
+    - cp /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/compile_commands.json .
+    - cp -r /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/TestResults .
     - bundle exec fastlane runSonar
   tags:
     - darwin/arm64
