@@ -20,6 +20,9 @@ build:
  #     - ./compile_commands.json
   script:
     - bundle exec fastlane build
+    - if test -f "compile_commands.json"; then `
+        echo "compile_commands.json exists." `
+      fi
   tags:
     - darwin/arm64
     - ios-build
