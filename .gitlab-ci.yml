@@ -15,12 +15,12 @@ before_script:
 build:
   dependencies: []
   stage: build
- # artifacts:
- #   paths:
- #     - ./compile_commands.json
   script:
     - bundle exec fastlane build
     - ([ -e "compile_commands.json" ] && echo "compilation db file exists" || echo "compilation db file does not exist")
+  artifacts:
+    paths:
+      - compile_commands.json
   tags:
     - darwin/arm64
     - ios-build
@@ -42,6 +42,9 @@ unit_tests:
 
 #sonar:
 #  stage: sonar
+#  dependencies:
+#    - build
+#    - unit_tests
 #  artifacts:
 #    paths:
 #      - ./sonar-project.properties
