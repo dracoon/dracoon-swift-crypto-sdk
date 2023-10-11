@@ -7,6 +7,7 @@ variables:
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
   GIT_STRATEGY: clone
+  CI_DEBUG_TRACE: "true"
 
 before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/ios/client/sdk-swift-crypto-sonar.git
