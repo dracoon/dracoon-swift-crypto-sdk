@@ -20,9 +20,10 @@ build:
     - bundle exec fastlane build
     - ([ -e "compile_commands.json" ] && echo "compilation db file exists" || echo "compilation db file does not exist")
     - ls -l compile_commands.json
+    - echo $CI_PROJECT_DIR
   artifacts:
     paths:
-      - compile_commands.json
+      - $CI_PROJECT_DIR/compile_commands.json
   tags:
     - darwin/arm64
     - ios-build
