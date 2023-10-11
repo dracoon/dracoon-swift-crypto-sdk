@@ -92,7 +92,7 @@ class EncryptionTests: XCTestCase {
     
     func testSwift_encryptFileKey_withRSA4096() {
         let plainFileKey = testFileReader?.readPlainFileKey(fileName: "sdks/swift/plain_file_key.json")
-        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/swift/public_key_4096.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/swift/public_key.json")
         
         let encryptedFileKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: userPublicKey!)
         
@@ -101,8 +101,8 @@ class EncryptionTests: XCTestCase {
     }
     
     func testWeb_encryptFileKey_withRSA2048() {
-        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "sdks/web/plain_file_key.json")
-        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/web/public_key_2048.json")
+        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "sdks/javascript/plain_file_key.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/javascript/public_key_2048.json")
         
         let encryptedFileKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: userPublicKey!)
         
@@ -111,8 +111,8 @@ class EncryptionTests: XCTestCase {
     }
     
     func testWeb_encryptFileKey_withRSA4096() {
-        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "sdks/web/plain_file_key.json")
-        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/web/public_key_4096.json")
+        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "sdks/javascript/plain_file_key.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/javascript/public_key_4096.json")
         
         let encryptedFileKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: userPublicKey!)
         

@@ -16,7 +16,7 @@
 #import <openssl/pkcs12.h>
 
 #define SALT_LENGTH 20
-#define ITERATION_COUNT 10000
+#define ITERATION_COUNT 1300000
 
 #define AES_KEY_LENGTH 256
 #define AES_GCM_IV_LENGTH 12
@@ -93,7 +93,7 @@
     X509_SIG* sig;
     const char *pwd = password.UTF8String;
     int pwdLength = (int)strlen(pwd);
-    sig = PKCS8_encrypt(-1, EVP_aes_256_cbc(), pwd, pwdLength, salt, 20, ITERATION_COUNT, info);
+    sig = PKCS8_encrypt(-1, EVP_aes_256_cbc(), pwd, pwdLength, salt, SALT_LENGTH, ITERATION_COUNT, info);
     
     success = PEM_write_bio_PKCS8(mem_pr, sig);
     if (!success) {
@@ -623,7 +623,7 @@ fail_decrypt_fileKey_pKey:
 #pragma mark Encrypting utilities
 
 int seed_prng(void);
-int seed_prng() {
+int seed_prng(void) {
     
     int bytesToSeed = 256;
     

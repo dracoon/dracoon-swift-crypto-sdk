@@ -38,6 +38,7 @@ let package = Package(
                 .target(name: "crypto_sdk"),
             ],
             path: "crypto-tests",
-            exclude: ["Info.plist", "files", "data", "sdks"])
+            exclude: ["Info.plist"],
+            resources: [.copy("data"), .copy("files"), .copy("sdks")])
     ]
 )

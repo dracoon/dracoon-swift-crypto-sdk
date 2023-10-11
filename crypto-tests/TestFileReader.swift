@@ -140,6 +140,15 @@ class TestFileReader {
     }
     
     fileprivate func getPath(fileName: String) -> URL? {
+        #if SWIFT_PACKAGE
+        let bundleURL = Bundle.module.bundleURL
+        return bundleURL.appendingPathComponent(fileName)
+        #else
+        return self.getDefaultPath(fileName: fileName)
+        #endif
+    }
+    
+    fileprivate func getDefaultPath(fileName: String) -> URL? {
         let bundle = Bundle(for: TestFileReader.self)
         guard let url = bundle.resourceURL else {
             return nil

@@ -209,6 +209,48 @@ class CryptoTests: XCTestCase {
         XCTAssert(encryptedKey!.version.rawValue == EncryptedFileKeyVersion.RSA4096_AES256GCM.rawValue)
         XCTAssert(decryptedKey!.version.rawValue == PlainFileKeyVersion.AES256GCM.rawValue)
     }
+    
+    func testEncryptFileKey_canDecryptEncryptedCSharpSdkKey() {
+        let password = "acw9q857n("
+        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "data/plain_file_key.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/c#/other_public_key.json")
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/c#/other_private_key.json")
+
+        let encryptedKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: userPublicKey!)
+
+        let decryptedKey = try? crypto!.decryptFileKey(fileKey: encryptedKey!, privateKey: userPrivateKey!, password: password)
+
+        XCTAssertNotNil(decryptedKey)
+        XCTAssertEqual(decryptedKey!.key, plainFileKey!.key)
+    }
+    
+    func testEncryptFileKey_canDecryptEncryptedJavaSdkKey() {
+        let password = "Qwer1234!"
+        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "data/plain_file_key.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/java/other_public_key.json")
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/java/other_private_key.json")
+
+        let encryptedKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: userPublicKey!)
+
+        let decryptedKey = try? crypto!.decryptFileKey(fileKey: encryptedKey!, privateKey: userPrivateKey!, password: password)
+
+        XCTAssertNotNil(decryptedKey)
+        XCTAssertEqual(decryptedKey!.key, plainFileKey!.key)
+    }
+    
+    func testEncryptFileKey_canDecryptEncryptedJavascriptSdkKey() {
+        let password = "Qwer1234!"
+        let plainFileKey = testFileReader?.readPlainFileKey(fileName: "data/plain_file_key.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/java/public_key.json")
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/java/private_key.json")
+
+        let encryptedKey = try? crypto!.encryptFileKey(fileKey: plainFileKey!, publicKey: userPublicKey!)
+
+        let decryptedKey = try? crypto!.decryptFileKey(fileKey: encryptedKey!, privateKey: userPrivateKey!, password: password)
+
+        XCTAssertNotNil(decryptedKey)
+        XCTAssertEqual(decryptedKey!.key, plainFileKey!.key)
+    }
 
     // MARK: Generate FileKey
 

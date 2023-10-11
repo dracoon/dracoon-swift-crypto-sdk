@@ -1,28 +1,61 @@
+# For some reason artifact upload does not work for this pipeline, so I implemented a manual cache.
 stages:
+  - build
   - unit_tests
+  - sonar
 
 variables:
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
+  GIT_STRATEGY: clone
 
 before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/ios/client/sdk-swift-crypto-sonar.git
-  - cd sdk-swift-crypto-sonar
-  - sh setup.sh
-  - cd ..
+  - sh sdk-swift-crypto-sonar/setup.sh
+
+build:
+  dependencies: []
+  stage: build
+  script:
+    - bundle exec fastlane build
+    - sh /opt/gitlab/Library/cleanupArtifacts.sh
+    - mkdir /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
+    - cp compile_commands.json /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
+  #artifacts:
+  #  paths:
+  #    - $CI_PROJECT_DIR/compile_commands.json
+  tags:
+    - darwin/arm64
+    - ios-build
 
 unit_tests:
   dependencies: []
   stage: unit_tests
-  artifacts:
-    paths:
-      - TestResults/Logs/Test/*.xcresult
+  #artifacts:
+  #  paths:
+  #    - TestResults/Logs/Test/*.xcresult
   script:
     - bundle exec fastlane runUnitTests
     - cp sdk-swift-crypto-sonar/printCodeCoverage.sh TestResults/Logs/Test/
-    - cd TestResults/Logs/Test/
-    - ./printCodeCoverage.sh
-    - cd ../../../
+    - sh TestResults/Logs/Test/printCodeCoverage.sh
+    - cp -r TestResults /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
   coverage: '/Code coverage: \d+\.\d+/'
   tags:
-    - darwin-amd64
+    - darwin/arm64
+    - ios-build
+
+sonar:
+  stage: sonar
+  dependencies:
+    - build
+    - unit_tests
+  #artifacts:
+  #  paths:
+  #    - ./sonar-project.properties
+  script:
+    - cp /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/compile_commands.json .
+    - cp -r /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/TestResults .
+    - bundle exec fastlane runSonar
+  tags:
+    - darwin/arm64
+    - ios-build
