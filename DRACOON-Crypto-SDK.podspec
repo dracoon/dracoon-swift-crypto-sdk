@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DRACOON-Crypto-SDK'
-  s.version          = '2.2.1'
+  s.version          = '2.3.0'
   s.summary          = 'Official DRACOON Crypto SDK'
 
   s.description      = <<-DESC
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.module_name      = 'crypto_sdk'
 
   s.ios.deployment_target = '12.0'
-  s.swift_version = '5.5'
+  s.swift_version = '5.9'
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 arm64' }
 
   s.subspec 'crypto_sdk_objc' do |objc|
