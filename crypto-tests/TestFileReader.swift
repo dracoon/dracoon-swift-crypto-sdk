@@ -41,8 +41,8 @@ class TestFileReader {
             let data = try Data(contentsOf: url, options: .alwaysMapped)
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
             if let fileKeyJson = json as? Dictionary<String, String>,
-                let key = fileKeyJson["key"], let version = fileKeyJson["version"],
-                let iv = fileKeyJson["iv"], let tag = fileKeyJson["tag"] {
+               let key = fileKeyJson["key"], let version = fileKeyJson["version"],
+               let iv = fileKeyJson["iv"], let tag = fileKeyJson["tag"] {
                 let fileKey = TestKey()
                 if plain {
                     let plainKey = PlainFileKey(key: key, version: PlainFileKeyVersion(rawValue: version)!)
@@ -140,9 +140,30 @@ class TestFileReader {
     }
     
     fileprivate func getPath(fileName: String) -> URL? {
+        #if os(iOS)
+        return self.getiOSPath(fileName: fileName)
+        #elseif os(macOS)
+        return self.getMacOsPath(fileName: fileName)
+        #else
+        return self.getDefaultPath(fileName: fileName)
+        #endif
+    }
+    
+    fileprivate func getiOSPath(fileName: String) -> URL? {
         #if SWIFT_PACKAGE
         let bundleURL = Bundle.module.bundleURL
         return bundleURL.appendingPathComponent(fileName)
+        #else
+        return self.getDefaultPath(fileName: fileName)
+        #endif
+    }
+    
+    fileprivate func getMacOsPath(fileName: String) -> URL? {
+        #if SWIFT_PACKAGE
+        let bundleURL = Bundle.module.bundleURL
+        return bundleURL.appendingPathComponent("Contents")
+            .appendingPathComponent("Resources")
+            .appendingPathComponent(fileName)
         #else
         return self.getDefaultPath(fileName: fileName)
         #endif
