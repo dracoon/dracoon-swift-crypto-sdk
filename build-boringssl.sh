@@ -1,9 +1,10 @@
 #!/bin/sh
 set -e
 
-PHONE_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk"
-SIMULATOR_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator17.0.sdk"
-ARM64_SIMULATOR_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator17.0.sdk"
+PHONE_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk"
+MAC_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk"
+SIMULATOR_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator17.2.sdk"
+ARM64_SIMULATOR_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator17.2.sdk"
 
 build_framework()
 {
@@ -54,6 +55,14 @@ echo "$boringssl_version"
 
 # Build frameworks
 
+build_framework arm64 $MAC_SDK '12.0' #arm64-apple-macos11
+if [ -d macos ]; then
+rm -rf macos
+fi
+mkdir macos
+mv arm64 macos
+
+
 build_framework arm64 $PHONE_SDK '12.0'
 if [ -d iphoneos ]; then
 rm -rf iphoneos
@@ -86,11 +95,12 @@ mkdir ../output
 # Create xcframework
 
 echo "Create xcframework..."
-xcodebuild -create-xcframework -framework iphoneos/arm64/openssl.framework -framework iphonesimulator/openssl.framework -output "../output/openssl.xcframework"
+xcodebuild -create-xcframework -framework macos/arm64/openssl.framework -framework iphoneos/arm64/openssl.framework -framework iphonesimulator/openssl.framework -output "../output/openssl.xcframework"
 
 # Cleanup
 
 rm -rf build
+rm -rf macos
 rm -rf iphoneos
 rm -rf arm64
 rm -rf x86_64
