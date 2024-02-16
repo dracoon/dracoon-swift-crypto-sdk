@@ -61,6 +61,8 @@ rm -rf macos
 fi
 mkdir macos
 mv arm64 macos
+build_framework x86_64 $MAC_SDK '12.0'
+mv x86_64 macos
 
 
 build_framework arm64 $PHONE_SDK '12.0'
@@ -85,6 +87,16 @@ echo "Combine simulator archs..."
 lipo -create -output "iphonesimulator/openssl.framework/openssl" "arm64/openssl.framework/openssl" "x86_64/openssl.framework/openssl"
 cp -r arm64/openssl.framework/Headers iphonesimulator/openssl.framework/
 
+# Create universal framework output directory for macos
+
+mkdir -p macos/openssl.framework
+
+# Create universal framework for macos
+
+echo "Combine simulator archs..."
+lipo -create -output "macos/openssl.framework/openssl" "macos/arm64/openssl.framework/openssl" "macos/x86_64/openssl.framework/openssl"
+cp -r macos/arm64/openssl.framework/Headers macos/openssl.framework/
+
 # Create xcframework output directory
 
 if [ -d ../output ]; then
@@ -95,7 +107,7 @@ mkdir ../output
 # Create xcframework
 
 echo "Create xcframework..."
-xcodebuild -create-xcframework -framework macos/arm64/openssl.framework -framework iphoneos/arm64/openssl.framework -framework iphonesimulator/openssl.framework -output "../output/openssl.xcframework"
+xcodebuild -create-xcframework -framework macos/openssl.framework -framework iphoneos/arm64/openssl.framework -framework iphonesimulator/openssl.framework -output "../output/openssl.xcframework"
 
 # Cleanup
 
