@@ -10,7 +10,10 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "crypto_sdk",
-            targets: ["crypto_sdk"])
+            targets: ["crypto_sdk"]),
+        .library(
+            name: "sdk-crypto-objc",
+            targets: ["sdk-crypto-objc"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
