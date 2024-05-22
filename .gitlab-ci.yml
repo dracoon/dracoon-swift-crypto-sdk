@@ -55,16 +55,18 @@ unit_tests:
 
 sonar:
   stage: sonar
+  secrets:
+    SONAR_TOKEN:
+      vault: Sonar/token@Build-Environment
+      file: false
   dependencies:
     - build
     - unit_tests
-  #artifacts:
-  #  paths:
-  #    - ./sonar-project.properties
   script:
     - cp /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/compile_commands.json .
     - cp -r /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/TestResults .
-    - bundle exec fastlane runSonar
+    - if [ $CI_PIPELINE_SOURCE == "merge_request_event" ]; then SONAR_BRANCH=$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; else SONAR_BRANCH=$CI_COMMIT_REF_NAME; fi
+    - bundle exec fastlane runSonar token:$SONAR_TOKEN gitBranch:$SONAR_BRANCH commitHash:$CI_COMMIT_SHORT_SHA
   tags:
     - darwin/arm64
     - ios-build
