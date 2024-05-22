@@ -189,4 +189,51 @@ class DecryptionTests: XCTestCase {
 
         XCTAssertEqual(expectedString, resultedString)
     }
+    
+    func testNew_decryptFileKeys_withUmlautsAndLatin1Encoding() {
+        let password = "Qwer1234!äö"
+        
+        var keyMap = [String:String]()
+        keyMap["sdks/new/private-2048-umlaut-old.json"] = "sdks/new/public-2048-umlaut-old.json"
+        keyMap["sdks/new/private-4096-umlaut-old.json"] = "sdks/new/public-4096-umlaut-old.json"
+        
+        keyMap.forEach({ entry in
+            let userPrivateKey = testFileReader?.readPrivateKey(fileName: entry.key)
+            let userPublicKey = testFileReader?.readPublicKey(fileName: entry.value)
+            
+            let userKeyPair = UserKeyPair(publicKey: userPublicKey!, privateKey: userPrivateKey!)
+            let success = crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password)
+            XCTAssertTrue(success)
+        })
+    }
+    
+    func testNew_decryptFileKey_withUmlautsAndLatin1Encoding() {
+        let password = "Qwer1234!ä"
+        
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/new/private-java.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/new/public-java.json")
+        
+        let userKeyPair = UserKeyPair(publicKey: userPublicKey!, privateKey: userPrivateKey!)
+        let success = crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password)
+        XCTAssertTrue(success)
+    }
+    
+    func testNew_decryptFileKeys_withUmlautsAndUTF8Encoding() {
+        let password = "Qwer1234!äö"
+        
+        var keyMap = [String:String]()
+        keyMap["sdks/new/private-2048-umlaut-new.json"] = "sdks/new/public-2048-umlaut-new.json"
+        keyMap["sdks/new/private-4096-umlaut-new.json"] = "sdks/new/public-4096-umlaut-new.json"
+        
+        keyMap.forEach({ entry in
+            let userPrivateKey = testFileReader?.readPrivateKey(fileName: entry.key)
+            let userPublicKey = testFileReader?.readPublicKey(fileName: entry.value)
+            
+            let userKeyPair = UserKeyPair(publicKey: userPublicKey!, privateKey: userPrivateKey!)
+            let success = crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password)
+            XCTAssertTrue(success)
+        })
+        
+        
+    }
 }
