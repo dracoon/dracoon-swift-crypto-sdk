@@ -27,7 +27,8 @@ build:
   stage: build
   script:
     - bundle exec fastlane build
-    - sh /opt/gitlab/Library/cleanupArtifacts.sh
+    #- sh /opt/gitlab/Library/cleanupArtifacts.sh
+    - if [ -d /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID} ]; then rm -rf /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}; fi
     - mkdir /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
     - cp compile_commands.json /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
   #artifacts:
