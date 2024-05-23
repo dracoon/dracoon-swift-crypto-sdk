@@ -180,6 +180,11 @@ fail_userKey_rsa:
     const char* pwd = [password UTF8String];
     PKCS8_PRIV_KEY_INFO* info = PKCS8_decrypt(sig, pwd, (int)strlen(pwd));
     if (info == NULL) {
+        // Try ISO8859-1 encoding
+        pwd = [password cStringUsingEncoding: NSISOLatin1StringEncoding];
+        info = PKCS8_decrypt(sig, pwd, (int)strlen(pwd));
+    }
+    if (info == NULL) {
         goto fail_decrypt;
     }
     EVP_PKEY* pkey = EVP_PKCS82PKEY(info);
