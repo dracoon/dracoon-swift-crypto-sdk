@@ -218,6 +218,17 @@ class DecryptionTests: XCTestCase {
         XCTAssertTrue(success)
     }
     
+    func testNew_decryptFileKey_withEmojiAndLatin1Encoding() {
+        let password = "Qwer1234!ä🐛"
+        
+        let userPrivateKey = testFileReader?.readPrivateKey(fileName: "sdks/new/private-js.json")
+        let userPublicKey = testFileReader?.readPublicKey(fileName: "sdks/new/public-js.json")
+        
+        let userKeyPair = UserKeyPair(publicKey: userPublicKey!, privateKey: userPrivateKey!)
+        let success = crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password)
+        XCTAssertFalse(success)
+    }
+    
     func testNew_decryptFileKeys_withUmlautsAndUTF8Encoding() {
         let password = "Qwer1234!äö"
         
