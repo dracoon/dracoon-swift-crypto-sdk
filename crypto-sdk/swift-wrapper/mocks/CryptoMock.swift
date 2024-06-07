@@ -20,7 +20,7 @@ public class CryptoMock {
     }
     
     public static func getCryptoFramework() -> CryptoFramework {
-        return OpenSslMock()
+        return OpenSslMock() 
     }
 }
 
