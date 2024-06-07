@@ -1,3 +1,11 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_TAG
+
 # For some reason artifact upload does not work for this pipeline, so I implemented a manual cache.
 stages:
   - build
@@ -11,14 +19,16 @@ variables:
 
 before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/ios/client/sdk-swift-crypto-sonar.git
-  - sh sdk-swift-crypto-sonar/setup.sh
+  - if [ $CI_PIPELINE_SOURCE == "merge_request_event" ]; then SONAR_BRANCH=$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; else SONAR_BRANCH=$CI_COMMIT_REF_NAME; fi
+  - sh sdk-swift-crypto-sonar/setup.sh "${SONAR_BRANCH}" "${CI_COMMIT_SHORT_SHA}"
 
 build:
   dependencies: []
   stage: build
   script:
     - bundle exec fastlane build
-    - sh /opt/gitlab/Library/cleanupArtifacts.sh
+    #- sh /opt/gitlab/Library/cleanupArtifacts.sh
+    - if [ -d /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID} ]; then rm -rf /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}; fi
     - mkdir /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
     - cp compile_commands.json /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}
   #artifacts:
@@ -46,16 +56,18 @@ unit_tests:
 
 sonar:
   stage: sonar
+  secrets:
+    SONAR_TOKEN:
+      vault: Sonar/token@Build-Environment
+      file: false
   dependencies:
     - build
     - unit_tests
-  #artifacts:
-  #  paths:
-  #    - ./sonar-project.properties
   script:
     - cp /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/compile_commands.json .
     - cp -r /opt/gitlab/Library/Artifacts/${CI_PIPELINE_ID}/TestResults .
-    - bundle exec fastlane runSonar
+    - if [ $CI_PIPELINE_SOURCE == "merge_request_event" ]; then SONAR_BRANCH=$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; else SONAR_BRANCH=$CI_COMMIT_REF_NAME; fi
+    - bundle exec fastlane runSonar token:$SONAR_TOKEN gitBranch:$SONAR_BRANCH commitHash:$CI_COMMIT_SHORT_SHA
   tags:
     - darwin/arm64
     - ios-build

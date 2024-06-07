@@ -179,6 +179,11 @@ fail_userKey_rsa:
     X509_SIG* sig = PEM_read_bio_PKCS8(bio, NULL, NULL, NULL);
     const char* pwd = [password UTF8String];
     PKCS8_PRIV_KEY_INFO* info = PKCS8_decrypt(sig, pwd, (int)strlen(pwd));
+    if (info == NULL && [password canBeConvertedToEncoding: NSISOLatin1StringEncoding] ) {
+        // Try ISO8859-1 encoding
+        pwd = [password cStringUsingEncoding: NSISOLatin1StringEncoding];
+        info = PKCS8_decrypt(sig, pwd, (int)strlen(pwd));
+    }
     if (info == NULL) {
         goto fail_decrypt;
     }

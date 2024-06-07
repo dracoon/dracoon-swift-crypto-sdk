@@ -116,6 +116,20 @@ class CryptoTests: XCTestCase {
 
         XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
     }
+    
+    func testCheckUserKeyPair_withUmlautCharactersInPassword_returnsTrue() {
+        let password = "ABC123Äö"
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA4096)
+
+        XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
+    }
+    
+    func testCheckUserKeyPair_withEmojiInPassword_returnsTrue() {
+        let password = "ABc🐛123#"
+        let userKeyPair = try! crypto!.generateUserKeyPair(password: password, version: UserKeyPairVersion.RSA4096)
+
+        XCTAssertTrue(crypto!.checkUserKeyPair(keyPair: userKeyPair, password: password))
+    }
 
     // MARK: FileKey decryption and encryption
 
