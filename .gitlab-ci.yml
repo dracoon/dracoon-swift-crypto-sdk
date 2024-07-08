@@ -16,6 +16,11 @@ variables:
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
   GIT_STRATEGY: clone
+  
+default:
+  id_tokens:
+    ID_TOKEN:
+      aud: https://vault.dracoon.net
 
 before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/cicd/pipeline/sdk-swift-crypto-sonar.git
