@@ -1,3 +1,7 @@
+include:
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.latest.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.latest.gitlab-ci.yml
+
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -10,12 +14,15 @@ workflow:
 stages:
   - build
   - unit_tests
+  - validate
   - sonar
 
 variables:
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
   GIT_STRATEGY: clone
+  # Gitlab Secret Detection
+  ENABLE_SECRET_DETECTION: "true"
   
 default:
   id_tokens:
@@ -24,7 +31,7 @@ default:
 
 before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/cicd/pipeline/sdk-swift-crypto-sonar.git
-  - if [ $CI_PIPELINE_SOURCE == "merge_request_event" ]; then SONAR_BRANCH=$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; else SONAR_BRANCH=$CI_COMMIT_REF_NAME; fi
+  - SONAR_BRANCH=$CI_COMMIT_REF_NAME
   - sh sdk-swift-crypto-sonar/setup.sh "${SONAR_BRANCH}" "${CI_COMMIT_SHORT_SHA}"
 
 build:
@@ -58,6 +65,38 @@ unit_tests:
   tags:
     - darwin/arm64
     - ios-build
+    
+dependency_check:
+  stage: validate
+  secrets:
+    NVD_API_KEY:
+      vault: nist-nvd-ios/api-key@Build-Environment
+      file: false
+  needs:
+    - job: build
+  script:
+    - cp sdk-swift-crypto-sonar/update-package-version.sh .
+    - cp sdk-swift-crypto-sonar/Package.resolved .
+    - sh update-package-version.sh
+    - dependency-check --scan Package.resolved --nvdApiKey $NVD_API_KEY --enableExperimental --failOnCVSS 7
+    - rm -f update-package-version.sh Package.resolved
+  retry: 2
+  tags:
+    - darwin/arm64
+    - ios-build
+    
+secret_detection:
+  stage: validate
+  before_script:
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.dracoon.com/dracoon/cicd/pipeline/sdk-swift-crypto-sonar.git
+  needs:
+    - job: build
+  rules:
+    - if: $ENABLE_SECRET_DETECTION != "true" ||
+        $SECRET_DETECTION_DISABLED == "true"
+      when: never
+    - when: on_success
+  allow_failure: false
 
 sonar:
   stage: sonar
