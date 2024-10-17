@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public protocol CryptoProtocol {
+public protocol CryptoProtocol: Sendable {
     func generateUserKeyPair(password: String, version: UserKeyPairVersion) throws -> UserKeyPair
     func checkUserKeyPair(keyPair: UserKeyPair, password: String) -> Bool
     func encryptFileKey(fileKey: PlainFileKey, publicKey: UserPublicKey) throws -> EncryptedFileKey

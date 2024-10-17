@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol EncryptionCipher {
+public protocol EncryptionCipher: Sendable {
     var fileKey: PlainFileKey { get }
     func processBlock(fileData: Data) throws -> Data
     func doFinal() throws

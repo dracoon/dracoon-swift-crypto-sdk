@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol DecryptionCipher {
+public protocol DecryptionCipher: Sendable {
     func processBlock(fileData: Data) throws -> Data
     func doFinal() throws
 }
