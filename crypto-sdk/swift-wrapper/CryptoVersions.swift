@@ -6,7 +6,7 @@
 //
 import Foundation
 
-public enum UserKeyPairVersion: String, Codable {
+public enum UserKeyPairVersion: String, Codable, Sendable {
     case RSA2048 = "A"
     case RSA4096 = "RSA-4096"
     
@@ -20,11 +20,11 @@ public enum UserKeyPairVersion: String, Codable {
     }
 }
 
-public enum PlainFileKeyVersion: String, Codable {
+public enum PlainFileKeyVersion: String, Codable, Sendable {
     case AES256GCM = "A"
 }
 
-public enum EncryptedFileKeyVersion: String, Codable {
+public enum EncryptedFileKeyVersion: String, Codable, Sendable {
     case RSA2048_AES256GCM = "A"
     case RSA4096_AES256GCM = "RSA-4096/AES-256-GCM"
 }

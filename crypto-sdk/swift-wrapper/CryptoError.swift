@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public enum CryptoError: Error {
+public enum CryptoError: Error, Sendable {
     case generate(String)
     case encrypt(String)
     case decrypt(String)
