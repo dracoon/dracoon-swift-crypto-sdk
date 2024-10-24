@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class FileEncryptionMock: EncryptionCipher {
+public class FileEncryptionMock: EncryptionCipher, @unchecked Sendable {
     
     public var fileKey = CryptoMock.getPlainFileKey()
     public var error: Error?

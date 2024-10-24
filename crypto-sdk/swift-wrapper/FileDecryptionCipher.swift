@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class FileDecryptionCipher: DecryptionCipher {
+public class FileDecryptionCipher: DecryptionCipher, @unchecked Sendable {
     
     private let crypto: CryptoFramework
     private let cipher: Cipher

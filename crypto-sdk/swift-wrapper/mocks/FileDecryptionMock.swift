@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class FileDecryptionMock: DecryptionCipher {
+public class FileDecryptionMock: DecryptionCipher, @unchecked Sendable {
     
     public var error: Error?
     public var data = Data()

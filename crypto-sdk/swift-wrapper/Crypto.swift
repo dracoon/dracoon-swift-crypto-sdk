@@ -9,7 +9,7 @@ import Foundation
 
 public typealias Cipher = NSValue
 
-public class Crypto : CryptoProtocol {
+public class Crypto : CryptoProtocol, @unchecked Sendable {
     
     private let crypto: CryptoFramework
     

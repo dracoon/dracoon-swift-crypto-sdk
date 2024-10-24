@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public class EncryptedFileKey: Codable {
+public class EncryptedFileKey: Codable, @unchecked Sendable {
     public let key: String
     public let version: EncryptedFileKeyVersion
     public let iv: String
