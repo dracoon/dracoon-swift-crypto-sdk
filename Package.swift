@@ -40,5 +40,6 @@ let package = Package(
             path: "crypto-tests",
             exclude: ["Info.plist"],
             resources: [.copy("data"), .copy("files"), .copy("sdks")])
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
