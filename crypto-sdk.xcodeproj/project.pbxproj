@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -397,7 +397,6 @@
 				};
 			};
 			buildConfigurationList = E0D0417C203B04D500658D53 /* Build configuration list for PBXProject "crypto-sdk" */;
-			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -405,6 +404,7 @@
 				Base,
 			);
 			mainGroup = E0D04178203B04D500658D53;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = E0D04183203B04D500658D53 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
