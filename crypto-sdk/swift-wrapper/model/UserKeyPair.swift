@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public class UserKeyPair: Codable, @unchecked Sendable {
+public final class UserKeyPair: Codable, @unchecked Sendable {
     public internal(set) var publicKeyContainer: UserPublicKey
     public internal(set) var privateKeyContainer: UserPrivateKey
     

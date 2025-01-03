@@ -5,7 +5,7 @@
 //  Copyright © 2018 Dracoon. All rights reserved.
 //
 
-public class PlainFileKey {
+public final class PlainFileKey {
     public let key: String
     public let version: PlainFileKeyVersion
     
