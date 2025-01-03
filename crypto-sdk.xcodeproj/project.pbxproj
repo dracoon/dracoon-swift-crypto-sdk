@@ -39,6 +39,7 @@
 		E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9E11022EAE50C000C63DD /* CryptoMock.swift */; };
 		E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */; };
 		E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */; };
+		E0B3522A2D28323200AC3701 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E0B352292D28323200AC3701 /* PrivacyInfo.xcprivacy */; };
 		E0D04192203B087000658D53 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D04191203B087000658D53 /* Crypto.swift */; };
 		E0D041A3203B316500658D53 /* UserKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A2203B316500658D53 /* UserKeyPair.swift */; };
 		E0EF141920447C9000E6964A /* data in Resources */ = {isa = PBXBuildFile; fileRef = E0EF141820447C9000E6964A /* data */; };
@@ -99,6 +100,7 @@
 		E0A9E11422EAE81F000C63DD /* OpenSslMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslMock.m; sourceTree = "<group>"; };
 		E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionMock.swift; sourceTree = "<group>"; };
 		E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionMock.swift; sourceTree = "<group>"; };
+		E0B352292D28323200AC3701 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E0D04182203B04D500658D53 /* crypto_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = crypto_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D04185203B04D500658D53 /* crypto_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypto_sdk.h; sourceTree = "<group>"; };
 		E0D04191203B087000658D53 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		E0D04178203B04D500658D53 = {
 			isa = PBXGroup;
 			children = (
+				E0B352292D28323200AC3701 /* PrivacyInfo.xcprivacy */,
 				E089B0D821B02A3F00442207 /* Supporting Files */,
 				E0D04184203B04D500658D53 /* crypto-sdk */,
 				E0A09295203C8712002E8C7F /* Example */,
@@ -421,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B3522A2D28323200AC3701 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
