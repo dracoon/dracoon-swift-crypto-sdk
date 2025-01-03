@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DRACOON-Crypto-SDK'
-  s.version          = '2.4.0'
+  s.version          = '3.0.0'
   s.summary          = 'Official DRACOON Crypto SDK'
 
   s.description      = <<-DESC
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/dracoon/dracoon-swift-crypto-sdk.git', :tag => "v" + s.version.to_s }
   s.module_name      = 'crypto_sdk'
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '15.0'
   s.swift_version = '6.0'
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 arm64' }
 
