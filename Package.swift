@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "crypto_sdk",
-    platforms: [.iOS(.v12)],
+    platforms: [.iOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -40,5 +40,6 @@ let package = Package(
             path: "crypto-tests",
             exclude: ["Info.plist"],
             resources: [.copy("data"), .copy("files"), .copy("sdks")])
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

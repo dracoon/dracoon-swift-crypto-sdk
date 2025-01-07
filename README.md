@@ -14,19 +14,29 @@ https://support.dracoon.com/hc/en-us/articles/360000986345
 
 Add this line to the dependencies section of your Package.swift:
 
-`.package(name: "crypto_sdk", url: "https://github.com/dracoon/dracoon-swift-crypto-sdk", .upToNextMajor(from: "2.4.0"))`
+`.package(url: "https://github.com/dracoon/dracoon-swift-crypto-sdk", .upToNextMajor(from: "3.0.0"))`
+
+If you need to define the SDK as target dependency add it like this:
+
+```
+targets: [
+        ...
+        .target(
+            dependencies: [
+                .product(name: "crypto_sdk", package: "dracoon-swift-crypto-sdk")
+                ]
+                ...
+            )
+        ]
+```
 
 #### Carthage
 
 Add the SDK to your Cartfile:
 
-`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 2.4.0`
+`github "dracoon/dracoon-swift-crypto-sdk.git" ~> 3.0.0`
 
 Then run
-
-`carthage update --platform iOS`
-
-to create a framework or
 
 `carthage update --use-xcframeworks --platform iOS`
 
@@ -37,11 +47,11 @@ to create an xcframework.
 Add to your Podfile:
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '12.0'
+platform :ios, '15.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'DRACOON-Crypto-SDK', '~> v2.4.0'
+pod 'DRACOON-Crypto-SDK', '~> v3.0.0'
 end
 ```
 Then run

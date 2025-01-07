@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, Google Inc.
+/* Copyright 2014 The BoringSSL Authors
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -181,7 +181,7 @@ OPENSSL_EXPORT int FIPS_mode_set(int on);
 OPENSSL_EXPORT const char *FIPS_module_name(void);
 
 // FIPS_module_hash returns the 32-byte hash of the FIPS module.
-OPENSSL_EXPORT const uint8_t* FIPS_module_hash(void);
+OPENSSL_EXPORT const uint8_t *FIPS_module_hash(void);
 
 // FIPS_version returns the version of the FIPS module, or zero if the build
 // isn't exactly at a verified version. The version, expressed in base 10, will

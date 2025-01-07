@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,7 @@
 		E0A9E11122EAE50C000C63DD /* CryptoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9E11022EAE50C000C63DD /* CryptoMock.swift */; };
 		E0AE320222F1BB8900CFBC48 /* FileEncryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */; };
 		E0AE320422F1BC3200CFBC48 /* FileDecryptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */; };
+		E0B3522A2D28323200AC3701 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E0B352292D28323200AC3701 /* PrivacyInfo.xcprivacy */; };
 		E0D04192203B087000658D53 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D04191203B087000658D53 /* Crypto.swift */; };
 		E0D041A3203B316500658D53 /* UserKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D041A2203B316500658D53 /* UserKeyPair.swift */; };
 		E0EF141920447C9000E6964A /* data in Resources */ = {isa = PBXBuildFile; fileRef = E0EF141820447C9000E6964A /* data */; };
@@ -99,6 +100,7 @@
 		E0A9E11422EAE81F000C63DD /* OpenSslMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSslMock.m; sourceTree = "<group>"; };
 		E0AE320122F1BB8900CFBC48 /* FileEncryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptionMock.swift; sourceTree = "<group>"; };
 		E0AE320322F1BC3200CFBC48 /* FileDecryptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDecryptionMock.swift; sourceTree = "<group>"; };
+		E0B352292D28323200AC3701 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E0D04182203B04D500658D53 /* crypto_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = crypto_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D04185203B04D500658D53 /* crypto_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypto_sdk.h; sourceTree = "<group>"; };
 		E0D04191203B087000658D53 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		E0D04178203B04D500658D53 = {
 			isa = PBXGroup;
 			children = (
+				E0B352292D28323200AC3701 /* PrivacyInfo.xcprivacy */,
 				E089B0D821B02A3F00442207 /* Supporting Files */,
 				E0D04184203B04D500658D53 /* crypto-sdk */,
 				E0A09295203C8712002E8C7F /* Example */,
@@ -378,7 +381,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = Dracoon;
 				TargetAttributes = {
 					DBC88A042795940000D67E89 = {
@@ -397,7 +400,6 @@
 				};
 			};
 			buildConfigurationList = E0D0417C203B04D500658D53 /* Build configuration list for PBXProject "crypto-sdk" */;
-			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -405,6 +407,7 @@
 				Base,
 			);
 			mainGroup = E0D04178203B04D500658D53;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = E0D04183203B04D500658D53 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -421,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B3522A2D28323200AC3701 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,13 +519,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Dracoon. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk-objc.crypto-sdk-objc";
@@ -541,7 +545,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_USE_RESPONSE_FILE = NO;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -553,13 +557,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Dracoon. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 3.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk-objc.crypto-sdk-objc";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -628,8 +632,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2.4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -693,8 +697,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2.4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -730,13 +734,13 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -772,13 +776,13 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 3.0.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dracoon.crypto-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

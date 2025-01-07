@@ -1,10 +1,6 @@
 #!/bin/sh
 set -e
 
-PHONE_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk"
-SIMULATOR_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.0.sdk"
-ARM64_SIMULATOR_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.0.sdk"
-
 build_framework()
 {
   ARCH=$1
@@ -28,6 +24,18 @@ build_framework()
 
 # Check SDK locations
 
+XCODE_DEV_PATH="/Applications/Xcode.app/Contents/Developer"
+
+if command -v xcode-select 2>&1 >/dev/null
+then
+	XCODE_DEV_PATH=$(xcode-select -p)
+	echo "Using Xcode DEV tools at $XCODE_DEV_PATH"
+fi
+
+PHONE_SDK="$XCODE_DEV_PATH/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"
+SIMULATOR_SDK="$XCODE_DEV_PATH/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
+ARM64_SIMULATOR_SDK="$XCODE_DEV_PATH/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
+
 if [ ! -d "$PHONE_SDK" ]; then
   echo "PHONE SDK does not exist at location!"
   exit
@@ -50,18 +58,18 @@ fi
 git clone https://boringssl.googlesource.com/boringssl
 cd boringssl
 boringssl_version=$(git rev-parse --short HEAD)
-echo "$boringssl_version"
+echo "BoringSSL version: $boringssl_version"
 
 # Build frameworks
 
-build_framework arm64 $PHONE_SDK '12.0'
+build_framework arm64 $PHONE_SDK '15.0'
 if [ -d iphoneos ]; then
 rm -rf iphoneos
 fi
 mkdir iphoneos
 mv arm64 iphoneos
-build_framework x86_64 $SIMULATOR_SDK '12.0'
-build_framework arm64 $ARM64_SIMULATOR_SDK '14.0'
+build_framework x86_64 $SIMULATOR_SDK '15.0'
+build_framework arm64 $ARM64_SIMULATOR_SDK '15.0'
 
 # Create universal framework output directory for simulator
 
